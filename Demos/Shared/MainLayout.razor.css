@@ -1,0 +1,22 @@
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.page {
+    flex-direction: row;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    z-index: 1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}

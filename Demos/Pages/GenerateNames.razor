@@ -1,0 +1,99 @@
+﻿@page "/namegen"
+
+<PageTitle>Name Generator Demo - Aptivi</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using Textify.Data
+@using Demos.Data
+@using System.IO
+@using System.Text.Json
+@inject NavigationManager NavManager
+
+<h1>Name Generator Demo</h1>
+<br />
+<p>
+    
+	You can try the Textify's Name Generator library here. Here are all the options that you can specify
+	while generating names.
+</p>
+
+<EditForm Model="namerSettings">
+	<p>Name count</p>
+	<InputNumber TValue="int" @bind-Value="namerSettings.NameCount"></InputNumber>
+	<br />
+	<p>Name starts with...</p>
+	<InputText @bind-Value="namerSettings.NameStartsWith"></InputText>
+	<br />
+	<p>Name ends with...</p>
+	<InputText @bind-Value="namerSettings.NameEndsWith"></InputText>
+	<br />
+	<p>Surname starts with...</p>
+	<InputText @bind-Value="namerSettings.SurnameStartsWith"></InputText>
+	<br />
+	<p>Surname ends with...</p>
+	<InputText @bind-Value="namerSettings.SurnameEndsWith"></InputText>
+	<br />
+    <button class="btn btn-primary" @onclick="@(e => PopulateNames())"><span class="fa fa-play" aria-hidden="true" />  Generate</button>
+
+    @if (names == null && firstNames == null && lastNames == null)
+    {
+        <p>
+            Click on the generate button to generate names.
+        </p>
+    }
+    else if (errored)
+    {
+        <p>
+            @errorReason
+        </p>
+    }
+    else
+    {
+        errored = false;
+        <table class="table" style="vertical-align: middle" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < names.Length; i++)
+                {
+                    <tr>
+                        <td>@names[i]</td>
+                        <td>@firstNames[i]</td>
+                        <td>@lastNames[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</EditForm>
+
+@code{
+	public NamerSettings namerSettings = new();
+	public static string[] names;
+	public static string[] firstNames;
+	public static string[] lastNames;
+	public static bool errored = false;
+	public static string errorReason = "";
+
+	public async Task PopulateNames()
+	{
+		try
+		{
+			names = await NamerService.GetNames(namerSettings);
+            firstNames = await NamerService.GetFirstNames(namerSettings);
+            lastNames = await NamerService.GetLastNames(namerSettings);
+        }
+        catch (Exception ex)
+        {
+            errored = true;
+            errorReason = ex.Message;
+        }
+    }
+}

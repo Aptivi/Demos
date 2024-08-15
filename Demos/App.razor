@@ -1,0 +1,17 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not Found - Aptivi</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+			<CardPicture Title="Nothing is found!">
+				We apologize for your inconvenience, but it looks like that you've followed
+				a non-existent path in this website. If you're sure that you've followed a valid
+				path, we could have either moved it or deleted it. Press the back button on your
+				web browser.
+			</CardPicture>
+        </LayoutView>
+    </NotFound>
+</Router>

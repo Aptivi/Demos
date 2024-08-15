@@ -1,0 +1,119 @@
+﻿@page "/define"
+
+<PageTitle>Nettify's Dictionary Demo - Aptivi</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using Nettify.EnglishDictionary
+@using Textify.Data.Analysis.Words
+@using Demos.Data
+@using System.IO
+@using System.Text.Json
+@inject WordService Service
+@inject NavigationManager NavManager
+
+<h1>Nettify's Dictionary Demo</h1>
+<br />
+<p>
+    
+	You can try the Nettify's Dictionary feature here. Select a word from the dropdown menu to be defined.
+	The list of words is provided to you by the Nettify library, which is demonstrated here, too!
+</p>
+
+<EditForm Model="wordSettings">
+    @if (words == null)
+    {
+        <p>
+            Fetching words, please wait...
+        </p>
+    }
+    else
+    {
+		<p>Page:</p>
+		<InputNumber @bind-Value="wordSettings.SelectedPage"></InputNumber>
+		<br />
+		<p>Word to define:</p>
+		<InputSelect @bind-Value="wordSettings.SelectedWord">
+			@for (int i = maxItems * (wordSettings.SelectedPage - 1); i < maxItems * wordSettings.SelectedPage && i < words.Length - 1; i++)
+			{
+				string word = words[i];
+				<option value=@word>@word</option>
+			}
+		</InputSelect>
+		<br />
+        <button class="btn btn-primary" @onclick="@(e => PopulateDefinition())"><span class="fa fa-search" aria-hidden="true" />  Define</button>
+    }
+
+    @if (errored)
+    {
+        <p>
+            @errorReason
+        </p>
+    }
+	else if (wordsToDefine == null)
+	{
+		<p>
+			Click on the above button to define a selected word.
+		</p>
+	}
+    else
+    {
+        errored = false;
+        <table class="table" style="vertical-align: middle" width="100%">
+            <thead>
+                <tr>
+                    <th>Part of speech</th>
+                    <th>Meanings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var word in wordsToDefine)
+                {
+                    @foreach (var meaning in word.Meanings)
+                    {
+                        @foreach (string meaningElement in @meaning.Definitions.Select((def) => string.IsNullOrWhiteSpace(def.Example) ? $"- {def.Definition}" : $"- {def.Definition} - [{def.Example}]"))
+                        {
+                            <tr>
+                                <td>@meaning.PartOfSpeech</td>
+                                <td>@meaningElement</td>
+						    </tr>
+						}
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</EditForm>
+
+<p>Licensed to you by CC-BY-SA 3.0</p>
+
+@code {
+	private string[] words;
+	private WordSettings wordSettings = new();
+	private DictionaryWord[] wordsToDefine;
+	private int maxPages = 1;
+	private int maxItems = 200;
+	private bool errored = false;
+	private string errorReason = "";
+
+	protected override async Task OnInitializedAsync()
+	{
+		words = await WordManager.GetWordsAsync();
+		maxPages = (int)Math.Truncate((double)words.Length / maxItems);
+	}
+
+	public async Task PopulateDefinition()
+	{
+		try
+		{
+			wordsToDefine = await Service.GetDefinition(wordSettings);
+            errored = false;
+        }
+        catch (Exception ex)
+        {
+            errored = true;
+            errorReason = ex.Message;
+        }
+    }
+}
