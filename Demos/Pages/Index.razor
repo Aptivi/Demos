@@ -36,7 +36,7 @@
 				Dictionary API. This is based on Nettify.
             </td>
             <td>
-                <button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo(usesGhPages ? "/Demos" : "" + "/define"))">
+                <button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo("/Demos/define"))">
 					<span class="oi oi-media-play" aria-hidden="true" />
 			    </button>
             </td>
@@ -50,7 +50,7 @@
 				list of all the English-pronounced names. This is based on Textify and our words list.
             </td>
             <td>
-				<button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo(usesGhPages ? "/Demos" : "" + "/namefind"))">
+				<button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo("/Demos/namefind"))">
 					<span class="oi oi-media-play" aria-hidden="true" />
 			    </button>
             </td>
@@ -64,20 +64,10 @@
 				list of all the English-pronounced names. This is based on Textify and our words list.
             </td>
             <td>
-				<button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo(usesGhPages ? "/Demos" : "" + "/namegen"))">
+				<button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo("/Demos/namegen"))">
 					<span class="oi oi-media-play" aria-hidden="true" />
 			    </button>
             </td>
         </tr>
     </tbody>
 </table>
-
-@code {
-	bool usesGhPages =
-		#if GHPAGES
-			true
-		#else
-			false
-		#endif
-		;
-}
