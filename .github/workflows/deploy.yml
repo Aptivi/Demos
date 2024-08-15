@@ -24,8 +24,11 @@ jobs:
         run: |
           dotnet workload install wasm-tools
           dotnet publish --configuration Release
+
+      - name: Change base-tag
+        run: sed -i 's/<base href="\/" \/>/<base href="\/Demos\/" \/>/g' $PUBLISH_FOLDER/index.html
   
-      - name: copy index.html to 404.html
+      - name: Copy index.html to 404.html
         run: cp $PUBLISH_FOLDER/index.html $PUBLISH_FOLDER/404.html
       
       - name: Add .nojekyll file
