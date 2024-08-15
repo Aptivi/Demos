@@ -23,7 +23,7 @@ jobs:
       - name: Publish the website in its release form
         run: |
           dotnet workload install wasm-tools
-          dotnet publish --configuration Release
+          dotnet publish --configuration Release -p:GHPAGES=1
 
       - name: Change base-tag
         run: sed -i 's/<base href="\/" \/>/<base href="\/Demos\/" \/>/g' $PUBLISH_FOLDER/index.html
