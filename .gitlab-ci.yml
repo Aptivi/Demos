@@ -29,10 +29,10 @@ gh-pages:
     - sed -i 's|base href="/Demos/"|base href="/"|g' Demos/bin/Release/net9.0/publish/wwwroot/404.html
     - git fetch --all
     - git checkout gh-pages
-    - mv Demos ..
+    - mv Demos ../binartifacts
     - git rm -rf .
     - git clean -xdf
-    - cp -a ../Demos/bin/Release/net9.0/publish/wwwroot/* .
+    - cp -a ../binartifacts/bin/Release/net9.0/publish/wwwroot/* .
     - touch .nojekyll
     - git add .
     - git config user.email "ceo@aptivi.anonaddy.com"
