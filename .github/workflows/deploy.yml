@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      PUBLISH_FOLDER: /home/runner/work/Demos/Demos/Demos/bin/Release/net8.0/publish/wwwroot
+      PUBLISH_FOLDER: /home/runner/work/Demos/Demos/Demos/bin/Release/net9.0/publish/wwwroot
 
     name: Build and Deploy Job
     steps:
@@ -18,13 +18,13 @@ jobs:
       
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '9.0.x'
    
       - name: Publish the website in its release form
         run: |
           dotnet workload install wasm-tools
-          dotnet publish --configuration Release -p:GHPAGES=1
-
+          dotnet publish --configuration Release
+  
       - name: Change base-tag
         run: sed -i 's/<base href="\/" \/>/<base href="\/Demos\/" \/>/g' $PUBLISH_FOLDER/index.html
   

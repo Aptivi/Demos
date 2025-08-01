@@ -1,0 +1,33 @@
+﻿@using aptivi.github.io.Data
+
+@if (FeatureArray is not null)
+{
+	<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+		@foreach (var feature in FeatureArray)
+		{
+			<div class="col d-flex align-items-start">
+				<div class="icon-square bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+					<span class="@feature.IconClass" aria-hidden="true" />
+				</div>
+				<div>
+					<h3 class="fs-2">@feature.Title</h3>
+					<p>@feature.Description</p>
+					<div class="d-grid gap-2 d-sm-flex">
+						@if (@feature.Buttons is not null)
+						{
+							@foreach (var button in @feature.Buttons)
+							{
+								<button class="btn btn-primary btn-lg" type="button" @onclick="@button.Item1">@button.Item2</button>
+							}
+						}
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+}
+
+@code {
+	[Parameter]
+	public FeatureDescriptor[] FeatureArray { get; set; }
+}

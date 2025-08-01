@@ -4,4 +4,4 @@ Allow: /googlee9e9d6aafc6474a4.html
 User-agent: *
 Disallow: /googlee9e9d6aafc6474a4.html
 
-Sitemap: http://aptivi.github.io/sitemap.xml
+Sitemap: https://aptivi.github.io/sitemap.xml

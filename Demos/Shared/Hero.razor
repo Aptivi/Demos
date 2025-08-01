@@ -1,0 +1,30 @@
+﻿<div class="px-4 py-5 my-5 text-center w-100 h-100">
+	<img class="d-block mx-auto mb-4" src="@ImageSource" alt="" width="256" height="256">
+	<h1 class="display-5">@Title</h1>
+	<div class="col-lg-6 mx-auto">
+		<p class="lead mb-4">@ChildContent</p>
+		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+			@if (Buttons is not null)
+			{
+				int idx = 0;
+				@foreach (var button in Buttons)
+				{
+					string buttonClass = idx == 0 ? "btn btn-primary btn-lg px-4 gap-3" : "btn btn-secondary btn-lg px-4";
+					<button class="@buttonClass" type="button" @onclick="@button.Item1">@button.Item2</button>
+					idx++;
+				}
+			}
+		</div>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public (EventCallback, string)[] Buttons { get; set; }
+	[Parameter]
+	public string Title { get; set; }
+	[Parameter]
+	public string ImageSource { get; set; } = "assets/logos/aptivi-logo-transparent-ios.png";
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+}

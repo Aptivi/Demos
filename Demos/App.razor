@@ -1,17 +1,31 @@
 ﻿<Router AppAssembly="@typeof(App).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-    </Found>
-    <NotFound>
-        <PageTitle>Not Found - Aptivi</PageTitle>
-        <LayoutView Layout="@typeof(MainLayout)">
-			<CardPicture Title="Nothing is found!">
+	<Found Context="routeData">
+		<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+	</Found>
+	<NotFound>
+		<PageTitle>Not Found - Aptivi</PageTitle>
+		<LayoutView Layout="@typeof(MainLayout)">
+			<Hero Title="Nothing is found!" Buttons="@DiscoverCallbacks">
 				We apologize for your inconvenience, but it looks like that you've followed
 				a non-existent path in this website. If you're sure that you've followed a valid
 				path, we could have either moved it or deleted it. Press the back button on your
 				web browser.
-			</CardPicture>
-        </LayoutView>
-    </NotFound>
+			</Hero>
+		</LayoutView>
+	</NotFound>
 </Router>
+
+@inject IJSRuntime JsRuntime
+
+@code
+{
+	(EventCallback, string)[] DiscoverCallbacks =>
+	[
+		(EventCallback.Factory.Create(this, new Action(async () => await Back())), "Go back")
+	];
+
+	private async Task Back()
+	{
+		await JsRuntime.InvokeVoidAsync("history.back");
+	}
+}

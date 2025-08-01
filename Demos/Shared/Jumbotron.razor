@@ -1,0 +1,29 @@
+﻿<div class="p-5 mb-4 jumbotron rounded-3" style="@ExtraStyles">
+	<div class="container-fluid py-5">
+		<h1 class="display-5">@Title</h1>
+		<p class="col-md-8 fs-4">@ChildContent</p>
+		@if (Buttons is not null)
+		{
+			@foreach (var button in Buttons)
+			{
+				<button class="btn btn-primary btn-lg" type="button" @onclick="@button.Item1">@button.Item2</button>
+			}
+		}
+		<a href="@SourceLink" class="sub">@SourceText</a>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public (EventCallback, string)[] Buttons { get; set; }
+	[Parameter]
+	public string ExtraStyles { get; set; }
+	[Parameter]
+	public string Title { get; set; }
+	[Parameter]
+	public string SourceText { get; set; }
+	[Parameter]
+	public string SourceLink { get; set; }
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+}

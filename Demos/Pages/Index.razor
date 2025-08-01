@@ -1,73 +1,17 @@
 ﻿@page "/"
 
-<PageTitle>Project Demos - Aptivi</PageTitle>
+<PageTitle>Aptivi Project Demos</PageTitle>
 
 @using System.Threading;
 @using System.Net;
 @using System.Text;
-@using Demos.Data
 @using System.IO
 @using System.Text.Json
 @inject NavigationManager NavManager
 
-<h1>Demos</h1>
-<br />
-<p>
-    
-    Here lists all our project demos that you can try out from this website. In order to be able to utilize the
-	demonstrated library, you must install it to your C# project. Select one of the projects below.
-</p>
+<Hero Title="Demos">
+	Here lists all our demonstration projects that we can showcase in this webpage. This covers
+	all the demonstrations that we can show here across different libraries, categorized by
+	library, then by purpose. Coming soon!
+</Hero>
 
-<table class="table" style="vertical-align: middle" width="100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <strong>Define Word</strong>
-            </td>
-            <td>
-                This demo application allows you to define a word according to the list of words from The English
-				Dictionary API. This is based on Nettify.
-            </td>
-            <td>
-                <button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo("/Demos/define"))">
-					<span class="oi oi-media-play" aria-hidden="true" />
-			    </button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Find Names</strong>
-            </td>
-            <td>
-                This demo application allows you to find names with conditions according to the ever-expanding
-				list of all the English-pronounced names. This is based on Textify and our words list.
-            </td>
-            <td>
-				<button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo("/Demos/namefind"))">
-					<span class="oi oi-media-play" aria-hidden="true" />
-			    </button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Generate Names</strong>
-            </td>
-            <td>
-                This demo application allows you to generate names with conditions according to the ever-expanding
-				list of all the English-pronounced names. This is based on Textify and our words list.
-            </td>
-            <td>
-				<button class="btn btn-primary" @onclick="@(e => NavManager.NavigateTo("/Demos/namegen"))">
-					<span class="oi oi-media-play" aria-hidden="true" />
-			    </button>
-            </td>
-        </tr>
-    </tbody>
-</table>

@@ -1,5 +1,4 @@
-﻿using Demos.Data;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
@@ -15,10 +14,6 @@ namespace Demos.Client
 			builder.RootComponents.Add<App>("#app");
 
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-			// Add necessary services
-			builder.Services.AddSingleton<NamerService>();
-			builder.Services.AddSingleton<WordService>();
 
 			await builder.Build().RunAsync();
 		}

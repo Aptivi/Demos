@@ -1,0 +1,8 @@
+﻿<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickAction">@ChildContent</button>
+
+@code {
+	[Parameter]
+	public EventCallback ClickAction { get; set; }
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+}
