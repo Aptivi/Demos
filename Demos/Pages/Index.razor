@@ -7,11 +7,30 @@
 @using System.Text;
 @using System.IO
 @using System.Text.Json
+@using Demos.Data
 @inject NavigationManager NavManager
 
 <Hero Title="Demos">
 	Here lists all our demonstration projects that we can showcase in this webpage. This covers
 	all the demonstrations that we can show here across different libraries, categorized by
-	library, then by purpose. Coming soon!
+	library, then by purpose. We are slowly adding more demonstrations by the end of this year.
 </Hero>
+<h1>Text tools</h1>
+<Features FeatureArray="@TextDemonstrations" />
 
+@code
+{
+	FeatureDescriptor[] TextDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Text casing",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/casing"))), "Showcase")
+			],
+			Description =
+				"Showcases the text casing that Textify provides"
+		},
+	];
+}
