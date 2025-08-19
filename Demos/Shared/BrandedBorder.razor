@@ -1,0 +1,10 @@
+﻿<div class="p-5 mb-4 jumbotron rounded-3" style="@ExtraStyles">
+	@ChildContent
+</div>
+
+@code {
+	[Parameter]
+	public string ExtraStyles { get; set; }
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+}

@@ -1,4 +1,4 @@
-﻿<div class="p-5 mb-4 jumbotron rounded-3" style="@ExtraStyles">
+﻿<BrandedBorder ExtraStyles="@ExtraStyles">
 	<div class="container-fluid py-5">
 		<h1 class="display-5">@Title</h1>
 		<p class="col-md-8 fs-4">@ChildContent</p>
@@ -11,7 +11,7 @@
 		}
 		<a href="@SourceLink" class="sub">@SourceText</a>
 	</div>
-</div>
+</BrandedBorder>
 
 @code {
 	[Parameter]

@@ -135,8 +135,15 @@ tbody, td, tfoot, th, thead, tr {
     width: 3rem;
     height: 3rem;
     border-radius: .75rem;
-    border-color: #D67DFF;
     background-color: #020143 !important;
+    color: #D67DFF !important;
+}
+
+.icon-square-invert {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .75rem;
+    background-color: #752efd !important;
     color: #D67DFF !important;
 }
 
