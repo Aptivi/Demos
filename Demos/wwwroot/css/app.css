@@ -31,6 +31,19 @@ h1, h2, h3, h4, h5, h6 {
     color: #C390D9;
 }
 
+code {
+    font-family: 'JetBrains Mono', NSimSun, monospace, 'Font Awesome 6 Free', 'Font Awesome 6 Brands';
+    color: #C390D9;
+}
+
+input {
+    color: white;
+    background-color: #752efd;
+    border-color: #d67dff;
+    border-width: 2px;
+    border-radius: .75rem;
+}
+
 a, .btn-link {
     color: white;
 }

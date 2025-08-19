@@ -27,12 +27,32 @@
 		new()
 		{
 			IconClass = "fa-solid fa-font",
-			Title = "Text casing",
+			Title = "Text Casing - Upper First",
 			Buttons = [
-				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/casing"))), "Showcase")
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/casing/upperfirst"))), "Showcase")
 			],
 			Description =
-				"Showcases the text casing that Textify provides"
+				"Showcases how Textify can make the first letter of a string uppercase."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Text Casing - Lower First",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/casing/lowerfirst"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can make the first letter of a string lowercase."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Text Casing - Title Case",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/casing/titlecase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can convert the string casing to be suitable for titles."
 		},
 	];
 }
