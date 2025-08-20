@@ -54,5 +54,65 @@
 			Description =
 				"Showcases how Textify can convert the string casing to be suitable for titles."
 		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Prefixes and Suffixes - Prefix Addition",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/prefixes/addprefix"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can add a prefix to the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Prefixes and Suffixes - Suffix Addition",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/prefixes/addsuffix"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can add a suffix to the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Prefixes and Suffixes - Prefix Removal",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/prefixes/removeprefix"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can remove a prefix from the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Prefixes and Suffixes - Suffix Removal",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/prefixes/removesuffix"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can remove a suffix from the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Prefixes and Suffixes - Prefix Verification",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/prefixes/verifyprefix"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can verify a prefix in the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Prefixes and Suffixes - Suffix Verification",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/prefixes/verifysuffix"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can verify a suffix in the string."
+		},
 	];
 }

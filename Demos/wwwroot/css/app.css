@@ -44,6 +44,14 @@ input {
     border-radius: .75rem;
 }
 
+select {
+    color: white;
+    background-color: #752efd;
+    border-color: #d67dff;
+    border-width: 2px;
+    border-radius: .75rem;
+}
+
 a, .btn-link {
     color: white;
 }

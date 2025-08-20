@@ -1,0 +1,54 @@
+﻿@page "/text/prefixes/addprefix"
+
+<PageTitle>Textify - Prefixes and Suffixes - Prefix Addition - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.General
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Prefixes and Suffixes - Prefix Addition">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Add prefix" feature.
+</Hero>
+<BrandedBorder>
+	<div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
+		<div class="col d-flex align-items-start">
+			<div>
+				<h3 class="fs-2">Enter some text</h3>
+				<InputText @bind-Value="Input"></InputText>
+			</div>
+			<div>
+				<h3 class="fs-2">Enter some prefix</h3>
+				<InputText @bind-Value="Prefix"></InputText>
+			</div>
+		</div>
+	</div>
+	<label><InputCheckbox @bind-Value="Verify"></InputCheckbox> Verify the prefix</label>
+	<p>Result from <code>AddPrefix()</code>: @Result</p>
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Add prefix</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "Hello world!";
+	public string Prefix { get; set; } = "You're saying: ";
+	public bool Verify { get; set; } = true;
+	public string Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.General.TextTools.html#Textify_General_TextTools_AddPrefix_System_String_System_String_System_Boolean_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = (Input ?? "").AddPrefix(Prefix, Verify);
+	}
+}
