@@ -17,18 +17,8 @@
 	"Verify prefix" feature.
 </Hero>
 <BrandedBorder>
-	<div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
-		<div class="col d-flex align-items-start">
-			<div>
-				<h3 class="fs-2">Enter some text</h3>
-				<InputText @bind-Value="Input"></InputText>
-			</div>
-			<div>
-				<h3 class="fs-2">Enter some prefix</h3>
-				<InputText @bind-Value="Prefix"></InputText>
-			</div>
-		</div>
-	</div>
+	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<p>Enter some prefix: <InputText @bind-Value="Prefix"></InputText></p>
 	<label>
 		String comparison method: <InputSelect @bind-Value="Comparison">
 			@for (int i = 0; i < Comparisons.Length; i++)

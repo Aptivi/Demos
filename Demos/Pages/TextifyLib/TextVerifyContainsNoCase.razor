@@ -1,0 +1,42 @@
+﻿@page "/text/verify/containsnocase"
+
+<PageTitle>Textify - Verification - Contains (Case-insensitive) - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.General
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Verification - Contains (Case-insensitive)">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Contains with no case sensitivity" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<p>Enter part of text: <InputText @bind-Value="Part"></InputText></p>
+	<p>Result from <code>ContainsAnyOf()</code>: @Result</p>
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Test condition</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "Can you believe that Nitrocid is awesome and powerful?";
+	public string Part { get; set; } = "POWERFUL";
+	public string Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.General.TextTools.html#Textify_General_TextTools_ContainsWithNoCase_System_String_System_String_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = $"{(Input ?? "").ContainsWithNoCase(Part)}";
+	}
+}

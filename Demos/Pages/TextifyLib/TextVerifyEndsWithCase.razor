@@ -1,6 +1,6 @@
-﻿@page "/text/prefixes/verifysuffix"
+﻿@page "/text/verify/endswithcase"
 
-<PageTitle>Textify - Prefixes and Suffixes - Suffix Verification - Aptivi Project Demos</PageTitle>
+<PageTitle>Textify - Verification - Ends With (Case-sensitive) - Aptivi Project Demos</PageTitle>
 
 @using System.Threading;
 @using System.Net;
@@ -11,43 +11,46 @@
 @using Textify.General
 @inject NavigationManager NavManager
 
-<Hero Title="Textify - Prefixes and Suffixes - Suffix Verification">
+<Hero Title="Textify - Verification - Ends With (Case-sensitive)">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
 	and we provide the API documentation here for future reference. This demonstrates the
-	"Verify suffix" feature.
+	"Ends with + case sensitivity" feature.
 </Hero>
 <BrandedBorder>
 	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter some suffix: <InputText @bind-Value="Suffix"></InputText></p>
+	<p>Enter part of text: <InputText @bind-Value="Part"></InputText></p>
 	<label>
 		String comparison method: <InputSelect @bind-Value="Comparison">
 			@for (int i = 0; i < Comparisons.Length; i++)
 			{
 				var comparisonName = Comparisons[i];
-				<option value=@comparisonName>@comparisonName</option>
+				@if (!comparisonName.ToString().Contains("IgnoreCase"))
+				{
+					<option value=@comparisonName>@comparisonName</option>
+				}
 			}
 		</InputSelect>
 	</label>
-	<p>Result from <code>VerifySuffix()</code>: @Result</p>
+	<p>Result from <code>EndsWithCase()</code>: @Result</p>
 	<div class="d-grid gap-2 d-sm-flex">
-		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Verify suffix</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Test condition</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
 	</div>
 </BrandedBorder>
 
 @code {
 	public StringComparison[] Comparisons = Enum.GetValues<StringComparison>();
-	public string Input { get; set; } = "Hello world! How's things?";
-	public string Suffix { get; set; } = " How's things?";
+	public string Input { get; set; } = "Can you believe that Nitrocid is awesome and powerful?";
+	public string Part { get; set; } = "POWERFUL?";
 	public StringComparison Comparison { get; set; } = StringComparison.CurrentCulture;
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.General.TextTools.html#Textify_General_TextTools_VerifySuffix_System_String_System_String_System_StringComparison_"))),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.General.TextTools.html#Textify_General_TextTools_EndsWithCase_System_String_System_String_System_StringComparison_"))),
 	];
 
 	public void ProcessInput()
 	{
-		Result = $"{(Input ?? "").VerifySuffix(Suffix, Comparison)}";
+		Result = $"{(Input ?? "").EndsWithCase(Part, Comparison)}";
 	}
 }

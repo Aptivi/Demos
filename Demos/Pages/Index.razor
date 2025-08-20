@@ -114,5 +114,195 @@
 			Description =
 				"Showcases how Textify can verify a suffix in the string."
 		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Contains All (Chars)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/containsallchars"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for all instances of characters."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Contains All (Strings)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/containsallstrings"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for all instances of strings."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Contains Any (Chars)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/containsanychars"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of characters."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Contains Any (Strings)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/containsanystrings"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of strings."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Contains (Case-insensitive)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/containsnocase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of a string while ignoring casing."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Ends With All (Chars)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/endswithallchars"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for all instances of characters at the end of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Ends With All (Strings)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/endswithallstrings"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for all instances of strings at the end of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Ends With Any (Chars)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/endswithanychars"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of characters at the end of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Ends With Any (Strings)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/endswithanystrings"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of strings at the end of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Ends With (Case-sensitive)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/endswithcase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of a string while caring about casing at the end of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Ends With (Case-insensitive)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/endswithnocase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of a string while ignoring casing at the end of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Starts With All (Chars)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/startswithallchars"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for all instances of characters at the beginning of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Starts With All (Strings)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/startswithallstrings"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for all instances of strings at the beginning of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Starts With Any (Chars)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/startswithanychars"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of characters at the beginning of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Starts With Any (Strings)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/startswithanystrings"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of strings at the beginning of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Starts With (Case-sensitive)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/startswithcase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of a string while caring about casing at the beginning of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Starts With (Case-insensitive)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/startswithnocase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for any instance of a string while ignoring casing at the beginning of the string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Equals (Case-sensitive)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/equalscase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for equality while caring about casing."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Equals (Case-insensitive)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/equalsnocase"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can check the string for equality while ignoring casing."
+		},
 	];
 }
