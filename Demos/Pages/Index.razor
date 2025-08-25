@@ -13,10 +13,14 @@
 <Hero Title="Demos">
 	Here lists all our demonstration projects that we can showcase in this webpage. This covers
 	all the demonstrations that we can show here across different libraries, categorized by
-	library, then by purpose. We are slowly adding more demonstrations by the end of this year.
+	library, then by purpose.
 </Hero>
 <BrandedBorder>
-	<h1>Text tools</h1>
+	<h1>Textify</h1>
+	<p>
+		This section showcases the useful demonstrations for the Textify library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
 	<Features FeatureArray="@TextDemonstrations" Invert="true" />
 </BrandedBorder>
 
@@ -303,6 +307,166 @@
 			],
 			Description =
 				"Showcases how Textify can check the string for equality while ignoring casing."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Encoding - Encode to BASE64",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/encoding/tobase64"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can encode your text to BASE64."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Encoding - Decode from BASE64",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/encoding/frombase64"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can decode your text from BASE64."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Misc - Character Width",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/misc/charwidth"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can get the width of a character or a set of characters and their types."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Misc - Wrap Sentences",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/misc/wrapsentences"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can wrap a long string to a set of sentence lines."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Is Palindrome?",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/palindrome"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can detect whether a word is a palindrome (madam) or not (alarm)."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Verification - Is Numeric?",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/verify/numeric"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can detect whether a string is a number (12345) or not (hello)."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Replace All",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/replaceall"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can replace all occurrences of characters or strings with a char or a string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Replace All Range",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/replaceallrange"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can replace all occurrences of characters or strings with a char array or a string array."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Replace Character",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/replacechar"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can replace a character found in an index with another character."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Replace Last Occurrence",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/replacelastoccurrence"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can replace last occurrence of character or string with a char or a string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Replace Occurrence",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/replaceoccurrence"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can replace a specific occurrence of character or string with a char or a string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Reverse",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/reverse"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can reverse the order of characters within a string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Shift Letters",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/shiftletters"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can shift the letters in a string with a shift threshold."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Split With Double Quotes",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/splitdquotes"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can split a string delimited with spaces, while handling double quotes."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Truncate String",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/truncate"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can truncate a string."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Manipulation - Escape/Unescape",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/manipulation/escape"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can escape and unescape a set of characters in a string."
 		},
 	];
 }

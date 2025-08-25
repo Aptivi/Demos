@@ -52,6 +52,15 @@ select {
     border-radius: .75rem;
 }
 
+table, thead, tr, td, th {
+    border: solid;
+    border-color: #D67DFF;
+    border-width: 2px;
+    border-radius: 1em !important;
+    background-color: #020143 !important;
+    color: white !important;
+}
+
 a, .btn-link {
     color: white;
 }
@@ -138,13 +147,6 @@ a, .btn-link {
     position: fixed;
     width: 100%;
     z-index: 1000;
-}
-
-tbody, td, tfoot, th, thead, tr {
-    border-color: inherit;
-    border-style: solid;
-    border-width: 0;
-    border-block-end: unset;
 }
 
 .card-title {

@@ -1,0 +1,42 @@
+﻿@page "/text/manipulation/shiftletters"
+
+<PageTitle>Textify - Manipulation - Shift Letters - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.General
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Manipulation - Shift Letters">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Shift Letters" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<p>Enter shift threshold: <InputNumber @bind-Value="Shift"></InputNumber></p>
+	<p>Result from <code>ShiftLetters()</code>: @Result</p>
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Shift</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "Fcjjmumpjb";
+	public int Shift { get; set; } = 2;
+	public string Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.General.TextTools.html#Textify_General_TextTools_ShiftLetters_System_String_System_Int32_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = $"{(Input ?? "").ShiftLetters(Shift)}";
+	}
+}
