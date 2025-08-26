@@ -1,0 +1,85 @@
+﻿@page "/text/names/findfirst"
+
+<PageTitle>Textify - Names - Find First Names - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.Data.NameGen
+@using Textify.General
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Names - Find First Names">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Search the first names" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter a search term: <InputText @bind-Value="Input"></InputText></p>
+	<p>
+		Gender: <InputSelect @bind-Value="Gender">
+			@foreach (var gender in Genders)
+			{
+				<option value="@gender">@gender</option>
+			}
+		</InputSelect>
+	</p>
+	<label><InputCheckbox @bind-Value="CheckPrefixesSuffixes"></InputCheckbox> Also check prefixes and suffixes</label>
+	<p>Enter a prefix: <InputText @bind-Value="Prefix" hidden="@(!CheckPrefixesSuffixes)"></InputText></p>
+	<p>Enter a suffix: <InputText @bind-Value="Suffix" hidden="@(!CheckPrefixesSuffixes)"></InputText></p>
+	<p>Results from <code>FindFirstNames()</code></p>
+	@if (Results is not null)
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">First name</th>
+					<th scope="col">Length</th>
+					<th scope="col">Index</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (int i = 0; i < Results.Length; i++)
+				{
+					string result = Results[i];
+					<tr>
+						<td>@result</td>
+						<td>@result.Length</td>
+						<td>@i</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Find</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[2]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public NameGenderType[] Genders = Enum.GetValues<NameGenderType>();
+	public string Input { get; set; } = "";
+	public NameGenderType Gender { get; set; } = NameGenderType.Unified;
+	public bool CheckPrefixesSuffixes { get; set; } = false;
+	public string Prefix { get; set; } = "";
+	public string Suffix { get; set; } = "";
+	public string[] Results { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.NameGen.NameGenerator.html#Textify_Data_NameGen_NameGenerator_FindFirstNames_System_String_System_String_System_String_Textify_Data_NameGen_NameGenderType_"))),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.NameGen.NameGenerator.html#Textify_Data_NameGen_NameGenerator_FindFirstNames_System_String_Textify_Data_NameGen_NameGenderType_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Results =
+			CheckPrefixesSuffixes ?
+			NameGenerator.FindFirstNames(Input, Prefix, Suffix, Gender) :
+			NameGenerator.FindFirstNames(Input, Gender);
+	}
+}

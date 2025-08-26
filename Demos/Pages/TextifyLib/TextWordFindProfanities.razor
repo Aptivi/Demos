@@ -1,0 +1,79 @@
+﻿@page "/text/words/findprof"
+
+<PageTitle>Textify - Words - Find Profanities - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.Data.Unicode
+@using Textify.Data.Words
+@using Textify.Data.Words.Profanity
+@using Textify.General
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Words - Find Profanities">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Find Profanities" feature. Caution: not family friendly!
+</Hero>
+<BrandedBorder>
+	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<p>
+		Search type: <InputSelect @bind-Value="SearchType">
+			@foreach (var searchType in SearchTypes)
+			{
+				<option value="@searchType">@searchType</option>
+			}
+		</InputSelect>
+	</p>
+	<p>Original string to query: @Input</p>
+	<p>Results from <code>GetProfanities()</code></p>
+	@if (Profanities is not null)
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Source word</th>
+					<th scope="col">Source index</th>
+					<th scope="col">Profane word</th>
+					<th scope="col">Profane index</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (int i = 0; i < Profanities.Length; i++)
+				{
+					var profanity = Profanities[i];
+					<tr>
+						<td>@profanity.SourceWord</td>
+						<td>@profanity.SourceIndex</td>
+						<td>@profanity.ProfaneWord</td>
+						<td>@profanity.ProfaneIndex</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public ProfanitySearchType[] SearchTypes = Enum.GetValues<ProfanitySearchType>();
+	public ProfanitySearchType SearchType { get; set; } = ProfanitySearchType.Shallow;
+	public string Input { get; set; } = "Who gives a shit? Get off your fucking high horse! You suck b a l l s! Who lives in Scunthorpe? Who are these jackasses from Scunthorpe?";
+	public ProfanityOccurrenceInfo[] Profanities { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Words.Profanity.ProfanityManager.html#Textify_Data_Words_Profanity_ProfanityManager_GetProfanities_System_String_Textify_Data_Words_Profanity_ProfanitySearchType_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Profanities = ProfanityManager.GetProfanities(Input, SearchType);
+	}
+}

@@ -21,7 +21,55 @@
 		This section showcases the useful demonstrations for the Textify library. Not all functions
 		are exposed here, but the most common and useful functions are found here.
 	</p>
-	<Features FeatureArray="@TextDemonstrations" Invert="true" />
+	<BrandedBorder>
+		<h1>Text tools</h1>
+		<p>
+			The text tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Conversion tools</h1>
+		<p>
+			The conversion tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextConversionDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Figlet tools</h1>
+		<p>
+			The Figlet tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextFigletDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Names tools</h1>
+		<p>
+			The names tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextNamesDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Emoji tools</h1>
+		<p>
+			The emoji tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextEmojiDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Unicode tools</h1>
+		<p>
+			The unicode tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextUnicodeDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Word tools</h1>
+		<p>
+			The word tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextWordDemonstrations" Invert="true" />
+	</BrandedBorder>
 </BrandedBorder>
 
 @code
@@ -467,6 +515,194 @@
 			],
 			Description =
 				"Showcases how Textify can escape and unescape a set of characters in a string."
+		},
+	];
+	FeatureDescriptor[] TextConversionDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Conversion - To Braille",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/conversion/tobraille"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can convert your text to the Braille representation."
+		},
+	];
+	FeatureDescriptor[] TextFigletDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Figlet - To Figlet",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/figlet/tofiglet"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can render your text as a Figlet typeface."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Figlet - Metrics",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/figlet/metrics"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can give you some information about a Figlet font based on your text."
+		},
+	];
+	FeatureDescriptor[] TextNamesDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Names - Find First Names",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/names/findfirst"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can search for first names using the search term, prefix, and suffix."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Names - Find Last Names",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/names/findlast"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can search for last names using the search term, prefix, and suffix."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Names - Generate First Names",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/names/genfirst"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can generate first names using the number of names, prefix, and suffix."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Names - Generate Last Names",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/names/genlast"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can generate last names using the number of names, prefix, and suffix."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Names - Generate Names",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/names/gen"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can generate names using the number of names, prefix, and suffix."
+		},
+	];
+	FeatureDescriptor[] TextEmojiDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Emoji - Get Info (manual)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/emoji/infomanual"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can get info about a specific emoji by manually entering in an emoji."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Emoji - Get Info (select)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/emoji/infoselect"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can get info about a specific emoji by selecting one of the emojis from the list."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Emoji - Get Kaomojis",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/emoji/kaomoji"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can get kaomojis."
+		},
+	];
+	FeatureDescriptor[] TextUnicodeDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Unicode - Query String",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/unicode/query"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can query all characters in a string and return their common Unicode info."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Unicode - Reverse RTL",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/unicode/reversertl"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can reverse characters for RTL."
+		},
+	];
+	FeatureDescriptor[] TextWordDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Words - Get Random Word",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/words/random"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can get a random word."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Words - Get Random Word (conditional)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/words/randomcond"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can get a random word with conditions."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Words - Find Profanities",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/words/findprof"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can find profanities. Caution: not family friendly!"
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Words - Filter Profanities",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/words/bleep"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can filter profanities. Caution: not family friendly!"
 		},
 	];
 }

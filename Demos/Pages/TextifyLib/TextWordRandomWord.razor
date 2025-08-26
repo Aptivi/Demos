@@ -1,0 +1,50 @@
+﻿@page "/text/words/random"
+
+<PageTitle>Textify - Words - Get Random Word - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.Data.Unicode
+@using Textify.Data.Words
+@using Textify.General
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Words - Get Random Word">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Get Random Word" feature.
+</Hero>
+<BrandedBorder>
+	<p>
+		Data type: <InputSelect @bind-Value="DataType">
+			@foreach (var dataType in DataTypes)
+			{
+				<option value="@dataType">@dataType</option>
+			}
+		</InputSelect>
+	</p>
+	<p>Result from <code>GetRandomWord()</code>: @Result</p>
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public WordDataType[] DataTypes = Enum.GetValues<WordDataType>();
+	public WordDataType DataType { get; set; } = WordDataType.Words;
+	public string Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Words.WordManager.html#Textify_Data_Words_WordManager_GetRandomWord_Textify_Data_Words_WordDataType_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = WordManager.GetRandomWord(DataType);
+	}
+}

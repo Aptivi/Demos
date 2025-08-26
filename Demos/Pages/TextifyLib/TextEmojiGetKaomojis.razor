@@ -1,0 +1,88 @@
+﻿@page "/text/emoji/kaomoji"
+
+<PageTitle>Textify - Emoji - Get Kaomojis - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.Accessibility
+@using Textify.Data.Unicode
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Emoji - Get Kaomojis">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Get Kaomojis" feature.
+</Hero>
+<BrandedBorder>
+	<p>
+		Select Kaomoji category: <InputSelect @bind-Value="Category" @bind-Value:after="VerifySubcategory">
+			@foreach (var kaomojiCategory in Categories)
+			{
+				<option value="@kaomojiCategory">@kaomojiCategory</option>
+			}
+		</InputSelect>
+	</p>
+	<p>
+		Select Kaomoji subcategory: <InputSelect @bind-Value="Subcategory">
+			@foreach (var kaomojiSubcategory in Subcategories)
+			{
+				<option value="@kaomojiSubcategory">@kaomojiSubcategory</option>
+			}
+		</InputSelect>
+	</p>
+	<p>Result from <code>GetKaomojis()</code></p>
+	@if (Kaomojis is not null)
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Emoticon</th>
+					<th scope="col">Length</th>
+					<th scope="col">Index</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (int i = 0; i < Kaomojis.Length; i++)
+				{
+					string kaomoji = Kaomojis[i];
+					<tr>
+						<td>@kaomoji</td>
+						<td>@kaomoji.Length</td>
+						<td>@i</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Get Kaomojis</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public KaomojiCategory[] Categories = Enum.GetValues<KaomojiCategory>();
+	public KaomojiCategory Category { get; set; } = KaomojiCategory.Neutral;
+	public KaomojiSubcategory[] Subcategories = KaomojiManager.GetKaomojiSubcategories(KaomojiCategory.Neutral);
+	public KaomojiSubcategory Subcategory { get; set; } = KaomojiSubcategory.Greeting;
+	public string[] Kaomojis { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Unicode.KaomojiManager.html#Textify_Data_Unicode_KaomojiManager_GetKaomojis_Textify_Data_Unicode_KaomojiCategory_Textify_Data_Unicode_KaomojiSubcategory_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Kaomojis = KaomojiManager.GetKaomojis(Category, Subcategory);
+	}
+
+	private void VerifySubcategory()
+	{
+		Subcategories = KaomojiManager.GetKaomojiSubcategories(Category);
+		Subcategory = Subcategories[0];
+	}
+}
