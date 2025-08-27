@@ -36,12 +36,16 @@ code {
     color: #C390D9;
 }
 
-input {
+input, textarea {
     color: white;
     background-color: #752efd;
     border-color: #d67dff;
     border-width: 2px;
     border-radius: .75rem;
+}
+
+textarea {
+    width: 100%;
 }
 
 select {

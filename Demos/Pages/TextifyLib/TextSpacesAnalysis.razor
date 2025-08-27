@@ -1,0 +1,65 @@
+﻿@page "/text/spaces/analysis"
+
+<PageTitle>Textify - Spaces - Analysis - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.Data.Unicode
+@using Textify.Data.Words
+@using Textify.General
+@using Textify.SpaceManager.Analysis
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Spaces - Analysis">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Space Analysis" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<p>Result from <code>AnalyzeSpaces()</code></p>
+	@if (Result is not null)
+	{
+		var spaces = Result.FalseSpaces;
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Character</th>
+					<th scope="col">Containing string</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (int i = 0; i < spaces.Length; i++)
+				{
+					var space = spaces[i];
+					<tr>
+						<td>[@((int)space.Item1)] @space.Item1</td>
+						<td>@space.Item2</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "Hello and welcome to the world!";
+	public SpaceAnalysisResult Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.SpaceManager.Analysis.SpaceAnalysisTools.html#Textify_SpaceManager_Analysis_SpaceAnalysisTools_AnalyzeSpaces_System_String_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = SpaceAnalysisTools.AnalyzeSpaces(Input);
+	}
+}

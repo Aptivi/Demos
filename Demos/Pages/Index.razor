@@ -70,6 +70,34 @@
 		</p>
 		<Features FeatureArray="@TextWordDemonstrations" Invert="true" />
 	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Space tools</h1>
+		<p>
+			The space tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextSpacesDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>JSON tools</h1>
+		<p>
+			The JSON tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextJsonDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Regex tools</h1>
+		<p>
+			The regex tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextRegexDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Version tools</h1>
+		<p>
+			The version tools from the Textify library can be found here.
+		</p>
+		<Features FeatureArray="@TextVersionDemonstrations" Invert="true" />
+	</BrandedBorder>
 </BrandedBorder>
 
 @code
@@ -703,6 +731,108 @@
 			],
 			Description =
 				"Showcases how Textify can filter profanities. Caution: not family friendly!"
+		},
+	];
+	FeatureDescriptor[] TextSpacesDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Spaces - Analysis",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/spaces/analysis"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can analyze a string for non-normal spaces."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Spaces - Conversion",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/spaces/convert"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can sanitize a string from non-normal spaces."
+		},
+	];
+	FeatureDescriptor[] TextJsonDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "JSON - Beautify and Minify",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/json/beauty"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can beautify and minify the JSON representation."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "JSON - Difference",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/json/difference"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can find differences between two JSON representations."
+		},
+	];
+	FeatureDescriptor[] TextRegexDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Regex - Filter",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/regex/filter"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can make string replacements using regexes as the search term."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Regex - Matches",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/regex/matches"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can find matches in a string using regexes as the search term."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Regex - Split",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/regex/split"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can split matches in a string using regexes as the search term."
+		},
+	];
+	FeatureDescriptor[] TextVersionDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Versioning - Parsing",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/version/parse"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can parse versions using SemVer 2.0 compliant rules."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Versioning - Comparison",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("text/version/compare"))), "Showcase")
+			],
+			Description =
+				"Showcases how Textify can compare versions using SemVer 2.0 compliant rules."
 		},
 	];
 }

@@ -1,0 +1,67 @@
+﻿@page "/text/regex/split"
+
+<PageTitle>Textify - Regex - Split - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using System.Text.RegularExpressions
+@using Textify.General
+@using Textify.Tools
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Regex - Split">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Split with Regex" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<p>Enter regex: <InputText @bind-Value="Source"></InputText></p>
+	<p>Results from <code>Split()</code></p>
+	@if (Results is not null)
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">String</th>
+					<th scope="col">Length</th>
+					<th scope="col">Index</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (int i = 0; i < Results.Length; i++)
+				{
+					string result = Results[i];
+					<tr>
+						<td>@result</td>
+						<td>@result.Length</td>
+						<td>@i</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Split</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "Hello and welcome to Terminaux!";
+	public string Source { get; set; } = /*lang=regex*/ @"[AEIOUaeiou]";
+	public string[] Results { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Tools.RegexTools.html#Textify_Tools_RegexTools_Split_System_String_System_String_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Results = RegexTools.Split(Input, Source);
+	}
+}

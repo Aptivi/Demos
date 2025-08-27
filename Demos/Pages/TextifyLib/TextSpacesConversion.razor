@@ -1,0 +1,57 @@
+﻿@page "/text/spaces/convert"
+
+<PageTitle>Textify - Spaces - Conversion - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.Data.Unicode
+@using Textify.Data.Words
+@using Textify.General
+@using Textify.SpaceManager.Analysis
+@using Textify.SpaceManager.Conversion
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Spaces - Conversion">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Space Conversion" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<label><InputCheckbox @bind-Value="Simple"></InputCheckbox> Simple substring replacement method</label>
+	<p>Result from <code>ConvertSpacesToString()</code> or <code>ConvertSpacesSimple()</code>: @Result</p>
+	<p>Input and output different: @Different</p>
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[2]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "Hello and welcome to the world!";
+	public bool Simple { get; set; } = false;
+	public bool Different = false;
+	public string Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.SpaceManager.Conversion.SpaceConversionTools.html#Textify_SpaceManager_Conversion_SpaceConversionTools_ConvertSpacesToString_Textify_SpaceManager_Analysis_SpaceAnalysisResult_"))),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.SpaceManager.Conversion.SpaceConversionTools.html#Textify_SpaceManager_Conversion_SpaceConversionTools_ConvertSpacesSimple_System_String_"))),
+	];
+
+	public void ProcessInput()
+	{
+		if (Simple)
+		{
+			var analysis = SpaceAnalysisTools.AnalyzeSpaces(Input);
+			Result = SpaceConversionTools.ConvertSpacesToString(analysis);
+		}
+		else
+			Result = SpaceConversionTools.ConvertSpacesSimple(Input);
+		Different = Result != Input;
+	}
+}

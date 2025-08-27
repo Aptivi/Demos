@@ -1,0 +1,53 @@
+﻿@page "/text/json/beauty"
+
+<PageTitle>Textify - JSON - Beautify and Minify - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Textify.Data.Figlet
+@using Textify.Tools
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - JSON - Beautify and Minify">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Beautify and Minify JSON" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter some JSON text</p>
+	<InputTextArea @bind-Value="Input"></InputTextArea>
+	<p>Result from <code>BeautifyJsonText()</code> or <code>MinifyJsonText()</code></p>
+	@if (Result is not null)
+	{
+		<pre>@Result</pre>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Beautify</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">Minify</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[2]">API Reference</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[3]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "{\"text\": \"Hello world!\", \"text2\": \"No text\"}";
+	public string Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, () => ProcessInput(false)),
+		EventCallback.Factory.Create(this, () => ProcessInput(true)),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_BeautifyJsonText_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_MinifyJsonText_System_String_"))),
+	];
+
+	public void ProcessInput(bool minify)
+	{
+		Result =
+		    minify ?
+			JsonTools.MinifyJsonText(Input) :
+			JsonTools.BeautifyJsonText(Input);
+	}
+}

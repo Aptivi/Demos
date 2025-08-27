@@ -1,0 +1,68 @@
+﻿@page "/text/version/parse"
+
+<PageTitle>Textify - Versioning - Parsing - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using System.Text.RegularExpressions
+@using Textify.Versioning
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - Versioning - Parsing">
+	You can demonstrate a feature from Textify where we showcase the text casing feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Parse a Version" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter a version: <InputText @bind-Value="Input"></InputText></p>
+	<p>Result from <code>Parse()</code></p>
+	@if (Result is not null)
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Major</th>
+					<th scope="col">Minor</th>
+					<th scope="col">Patch</th>
+					<th scope="col">Revision</th>
+					<th scope="col">Special</th>
+					<th scope="col">PR Info</th>
+					<th scope="col">Build Metadata</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@Result.MajorVersion</td>
+					<td>@Result.MinorVersion</td>
+					<td>@Result.PatchVersion</td>
+					<td>@Result.RevisionVersion</td>
+					<td>@Result.SpecialVersion</td>
+					<td>@Result.PreReleaseInfo</td>
+					<td>@Result.BuildMetadata</td>
+				</tr>
+			</tbody>
+		</table>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Parse</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "0.1.0.1-alpha+b28a7d01";
+	public SemVer Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Versioning.SemVer.html#Textify_Versioning_SemVer_Parse_System_String_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = SemVer.Parse(Input);
+	}
+}
