@@ -1,0 +1,119 @@
+﻿@page "/metalinker/metalink/parse"
+
+<PageTitle>Metalinker - Metalink - Parse - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Metalinker
+@using Demos.Data
+@using Metalinker.Instances
+@inject NavigationManager NavManager
+
+<Hero Title="Metalinker - Metalink - Parse">
+	You can demonstrate a feature from Metalinker where we showcase this feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Parse Metalink" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter metalink representation</p>
+	<InputTextArea @bind-Value="Input"></InputTextArea>
+	<p>Results from <code>GetMetalinkFromXml()</code></p>
+	@if (Result is not null)
+	{
+		<ul>
+			<li>Dynamic: @Result.Dynamic</li>
+			<li>Generator: @Result.Generator</li>
+			<li>Publisher: @Result.Publisher</li>
+			<li>Publish date: @Result.PublishDate</li>
+			<li>Publisher URL: @Result.PublisherUrl</li>
+			<li>Original path: @Result.Origin</li>
+			@if (Result.Files is not null)
+			{
+				<ul>
+					<li>File count: @Result.Files.Length</li>
+					@for (int i = 0; i < Result.Files.Length; i++)
+					{
+						var file = Result.Files[i];
+						<li>File @(i + 1) out of @Result.Files.Length</li>
+						<ul>
+							<li>File: @file.File</li>
+							<li>Size: @file.Size bytes</li>
+							@if (file.PieceInfo is not null)
+							{
+								<li>Piece type: @file.PieceInfo.Type</li>
+								<li>Piece length: @file.PieceInfo.Length</li>
+								<li>Piece hashes</li>
+								<ul>
+									@for (int j = 0; j < file.PieceInfo.Hashes.Length; j++)
+									{
+										string hash = file.PieceInfo.Hashes[j];
+										<li>[@(j + 1)/@file.PieceInfo.Hashes.Length] @hash</li>
+									}
+								</ul>
+							}
+							@if (file.Hashes is not null)
+							{
+								<li>File hashes</li>
+								<ul>
+									@for (int j = 0; j < file.Hashes.Length; j++)
+									{
+										var hash = file.Hashes[j];
+										<li>[@(j + 1)/@file.Hashes.Length] [@hash.HashSumType] @hash.HashSum</li>
+									}
+								</ul>
+							}
+							@if (file.Signatures is not null)
+							{
+								<li>Signatures</li>
+								<ul>
+									@for (int j = 0; j < file.Signatures.Length; j++)
+									{
+										var sig = file.Signatures[j];
+										<li>[@(j + 1)/@file.Signatures.Length] Signature file name: @sig.SignatureFile</li>
+										<li>[@(j + 1)/@file.Signatures.Length] Signature type: @sig.SignatureType</li>
+										<li>[@(j + 1)/@file.Signatures.Length] Signature content: @sig.SignatureContent</li>
+									}
+								</ul>
+							}
+							@if (file.Resources is not null)
+							{
+								<li>Resources</li>
+								<ul>
+									@for (int j = 0; j < file.Resources.Length; j++)
+									{
+										var res = file.Resources[j];
+										<li>[@(j + 1)/@file.Resources.Length] Resource link: <a href="@res.URL">@res.URL</a></li>
+										<li>[@(j + 1)/@file.Resources.Length] Resource location: @res.Location</li>
+										<li>[@(j + 1)/@file.Resources.Length] Resource type: @res.Type</li>
+										<li>[@(j + 1)/@file.Resources.Length] Resource preference: @res.Preference</li>
+									}
+								</ul>
+							}
+						</ul>
+					}
+				</ul>
+			}
+		</ul>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "";
+	public Metalink Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/ChemiStar/api/ChemiStar.PeriodicTableParser.html#ChemiStar_PeriodicTableParser_GetSubstance_System_Int32_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = MetalinkParser.GetMetalinkFromXml(Input);
+	}
+}

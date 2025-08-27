@@ -1,0 +1,64 @@
+﻿@page "/chemistar/periodic/elementinfoselect"
+
+<PageTitle>ChemiStar - Periodic Table - Element Info (select) - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using ChemiStar
+@using ChemiStar.Data
+@using Demos.Data
+@inject NavigationManager NavManager
+
+<Hero Title="ChemiStar - Periodic Table - Element Info (select)">
+	You can demonstrate a feature from ChemiStar where we showcase this feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Get element info" feature.
+</Hero>
+<BrandedBorder>
+	<p>
+		Select substance: <InputSelect @bind-Value="AtomicNumber">
+			@foreach (var substance in PeriodicTableParser.GetSubstances())
+			{
+				<option value="@substance.AtomicNumber">[@substance.AtomicNumber] @substance.Symbol - @substance.Name</option>
+			}
+		</InputSelect>
+	</p>
+	<p>Results from <code>GetSubstance()</code></p>
+	@if (Result is not null)
+	{
+		<ul>
+			<li>[@Result.AtomicNumber] @Result.Symbol - @Result.Name</li>
+			<li>Summary: @Result.Summary</li>
+			<li>Atomic mass: @Result.AtomicMass</li>
+			<li>Category: @Result.Category</li>
+			<li>Phase: @Result.Phase</li>
+			<li>Period, Group: @Result.Period, @Result.Group</li>
+			<li>Discovered by: @Result.Discoverer</li>
+			<li>Named by: @Result.NamedBy</li>
+			<li>Appearance: @Result.Appearance</li>
+			<li>Boiling temperature: @Result.BoilingTemperature°K</li>
+			<li>Melting temperature: @Result.MeltingTemperature°K</li>
+		</ul>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public int AtomicNumber { get; set; } = 1;
+	public SubstanceInfo Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/ChemiStar/api/ChemiStar.PeriodicTableParser.html#ChemiStar_PeriodicTableParser_GetSubstance_System_Int32_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = PeriodicTableParser.GetSubstance(AtomicNumber);
+	}
+}

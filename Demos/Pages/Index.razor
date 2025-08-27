@@ -134,6 +134,69 @@
 		<Features FeatureArray="@NetWeatherDemonstrations" Invert="true" />
 	</BrandedBorder>
 </BrandedBorder>
+<BrandedBorder>
+	<h1>ChemiStar</h1>
+	<p>
+		This section showcases the useful demonstrations for the ChemiStar library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
+	<BrandedBorder>
+		<h1>Chemistry tools</h1>
+		<p>
+			The chemistry tools from the ChemiStar library can be found here.
+		</p>
+		<Features FeatureArray="@ChemiStarDemonstrations" Invert="true" />
+	</BrandedBorder>
+</BrandedBorder>
+<BrandedBorder>
+	<h1>Magico</h1>
+	<p>
+		This section showcases the useful demonstrations for the Magico library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
+	<BrandedBorder>
+		<h1>Enumerable tools</h1>
+		<p>
+			The enumerable tools from the Magico library can be found here.
+		</p>
+		<Features FeatureArray="@MagicoEnumerableDemonstrations" Invert="true" />
+	</BrandedBorder>
+</BrandedBorder>
+<BrandedBorder>
+	<h1>Metalinker</h1>
+	<p>
+		This section showcases the useful demonstrations for the Metalinker library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
+	<BrandedBorder>
+		<h1>Metalink tools</h1>
+		<p>
+			The Metalink tools from the Metalinker library can be found here.
+		</p>
+		<Features FeatureArray="@MetalinkerDemonstrations" Invert="true" />
+	</BrandedBorder>
+</BrandedBorder>
+<BrandedBorder>
+	<h1>VisualCard</h1>
+	<p>
+		This section showcases the useful demonstrations for the VisualCard library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
+	<BrandedBorder>
+		<h1>Contact tools</h1>
+		<p>
+			The vCard tools from the VisualCard library can be found here.
+		</p>
+		<Features FeatureArray="@VisualCardContactDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Calendar tools</h1>
+		<p>
+			The vCalendar tools from the VisualCard library can be found here.
+		</p>
+		<Features FeatureArray="@VisualCardCalendarDemonstrations" Invert="true" />
+	</BrandedBorder>
+</BrandedBorder>
 
 @code
 {
@@ -963,6 +1026,71 @@
 			],
 			Description =
 				"Showcases how Nettify can list all cities using the Weather.com API (you'll need to purchase your API key from IBM)."
+		},
+	];
+	#endregion
+	#region ChemiStar Demos
+	FeatureDescriptor[] ChemiStarDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Periodic Table - Element Info (select)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("chemistar/periodic/elementinfoselect"))), "Showcase")
+			],
+			Description =
+				"Showcases how ChemiStar can get information about an element."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Periodic Table - Element Info (manual)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("chemistar/periodic/elementinfomanual"))), "Showcase")
+			],
+			Description =
+				"Showcases how ChemiStar can get information about an element."
+		},
+	];
+	#endregion
+	#region Magico Demos
+	FeatureDescriptor[] MagicoEnumerableDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Enumerable - Randomize Array",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("magico/enum/randomizearray"))), "Showcase")
+			],
+			Description =
+				"Showcases how Magico can randomize the array for you."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Enumerable - Sort Numbers",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("magico/enum/sortarray"))), "Showcase")
+			],
+			Description =
+				"Showcases how Magico can sort the array of numbers for you using the bubble sort algorithm."
+		},
+	];
+	#endregion
+	#region Metalinker Demos
+	FeatureDescriptor[] MetalinkerDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Metalink - Parse",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("metalinker/metalink/parse"))), "Showcase")
+			],
+			Description =
+				"Showcases how Metalinker can get information about the Metalink files."
 		},
 	];
 	#endregion

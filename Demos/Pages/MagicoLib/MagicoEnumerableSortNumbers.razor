@@ -1,0 +1,52 @@
+﻿@page "/magico/enum/sortarray"
+
+<PageTitle>Magico - Enumerable - Sort Numbers - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Magico.Enumeration
+@using Textify.General
+@inject NavigationManager NavManager
+
+<Hero Title="Magico - Enumerable - Sort Numbers">
+	You can demonstrate a feature from Magico where we showcase this feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Sort Numbers" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter a group of values in their own lines</p>
+	<InputTextArea @bind-Value="Input"></InputTextArea>
+	<p>Results from <code>SortNumbers()</code></p>
+	@if (Results is not null)
+	{
+		<ul>
+			@foreach (var result in Results)
+			{
+				<li>@result</li>
+			}
+		</ul>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Sort</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "12\n34\n56\n78\n90\n43\n28\n82\n62\n13\n83";
+	public int[] Results { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Magico/api/Magico.Enumeration.ArrayTools.html#Magico_Enumeration_ArrayTools_SortNumbers__1___0___"))),
+	];
+
+	public void ProcessInput()
+	{
+		var inputLines = Input.SplitNewLines().Select(text => int.Parse(text)).ToArray();
+		Results = inputLines.SortNumbers();
+	}
+}
