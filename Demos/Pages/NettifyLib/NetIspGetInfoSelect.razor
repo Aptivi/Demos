@@ -1,0 +1,91 @@
+﻿@page "/net/isp/getinfoselect"
+
+<PageTitle>Textify - ISP - Get Info (select) - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Nettify.MailAddress
+@using Nettify.MailAddress.IspInfo
+@using Textify.Accessibility
+@using Textify.Data.Unicode
+@inject NavigationManager NavManager
+
+<Hero Title="Textify - ISP - Get Info (select)">
+	You can demonstrate a feature from Nettify where we showcase this feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"Get Info about an ISP" feature.
+</Hero>
+<BrandedBorder>
+	<p>
+		Select ISP: <InputSelect @bind-Value="Isp">
+			@foreach (var ispHost in IspTools.KnownIspHosts)
+			{
+				<option value="@ispHost">@ispHost</option>
+			}
+		</InputSelect>
+	</p>
+	<p>Result from <code>GetIspConfigFromHost()</code></p>
+	@if (Result is not null)
+	{
+		<p>Display name: @Result.EmailProvider.DisplayName</p>
+		<p>Display short name: @Result.EmailProvider.DisplayShortName</p>
+		<p>Domains</p>
+		@if (Result.EmailProvider.Domain is not null)
+		{
+			<ul>
+				@foreach (string domain in Result.EmailProvider.Domain)
+				{
+					<li>@domain</li>
+				}
+			</ul>
+		}
+		<p>Dominating Domain: @Result.EmailProvider.DominatingDomain</p>
+		<p>Server information</p>
+		<ul>
+			@if (Result.EmailProvider.IncomingServer is not null)
+			{
+				@for (int i = 0; i < Result.EmailProvider.IncomingServer.Length; i++)
+				{
+					var server = Result.EmailProvider.IncomingServer[i];
+					<li>Incoming server number @(i + 1)/@Result.EmailProvider.IncomingServer.Length</li>
+					<ul>
+						<li>Host name: @server.Hostname:@server.Port</li>
+						<li>Server type: @server.Type</li>
+						<li>Server socket type: @server.SocketType</li>
+					</ul>
+				}
+			}
+			@if (Result.EmailProvider.OutgoingServer is not null)
+			{
+				<li>Outgoing server</li>
+				<ul>
+					<li>Host name: @Result.EmailProvider.OutgoingServer.Hostname:@Result.EmailProvider.OutgoingServer.Port</li>
+					<li>Server type: @Result.EmailProvider.OutgoingServer.Type</li>
+					<li>Server socket type: @Result.EmailProvider.OutgoingServer.SocketType</li>
+				</ul>
+			}
+		</ul>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Get info</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Isp { get; set; } = "gmail.com";
+	public ClientConfig Result { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Nettify/api/Nettify.MailAddress.IspTools.html#Nettify_MailAddress_IspTools_GetIspConfigFromHost_System_String_"))),
+	];
+
+	public void ProcessInput()
+	{
+		Result = IspTools.GetIspConfigFromHost(Isp);
+	}
+}

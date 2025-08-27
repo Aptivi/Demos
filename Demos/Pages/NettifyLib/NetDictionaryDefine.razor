@@ -1,0 +1,159 @@
+﻿@page "/net/dictionary/define"
+
+<PageTitle>Nettify - Dictionary - Define - Aptivi Project Demos</PageTitle>
+
+@using System.Threading;
+@using System.Net;
+@using System.Text;
+@using System.IO
+@using System.Text.Json
+@using Demos.Data
+@using Nettify.EnglishDictionary
+@inject NavigationManager NavManager
+
+<Hero Title="Nettify - Dictionary - Define">
+	You can demonstrate a feature from Nettify where we showcase this feature,
+	and we provide the API documentation here for future reference. This demonstrates the
+	"text definition" feature.
+</Hero>
+<BrandedBorder>
+	<p>Enter a word: <InputText @bind-Value="Input"></InputText></p>
+	<p>Results from <code>GetWordInfo()</code></p>
+	@if (Results is not null)
+	{
+		<ul>
+			@for (int i = 0; i < Results.Length; i++)
+			{
+				var result = Results[i];
+				<li>Word definition @(i + 1)/@Results.Length</li>
+				<ul>
+					<li>Actual word: @result.Word</li>
+					<li>Phonetic word: @result.PhoneticWord</li>
+					@if (result.Meanings is not null)
+					{
+						<li>Meaning count: @result.Meanings.Length</li>
+						@foreach (var meaning in result.Meanings)
+						{
+							<ul>
+								<li>Part of speech: @meaning.PartOfSpeech</li>
+								@if (meaning.Definitions is not null)
+								{
+									<li>Definition count: @meaning.Definitions.Length</li>
+									@foreach (var definition in meaning.Definitions)
+									{
+										<ul>
+											<li>Definition: @definition.Definition</li>
+											<li>Example: @definition.Example</li>
+											@if (definition.Synonyms is not null)
+											{
+												<li>Scoped synonym count: @definition.Synonyms.Length</li>
+												<ul>
+												@foreach (var synonym in definition.Synonyms)
+												{
+													<li>Synonym: @synonym</li>
+												}
+												</ul>
+											}
+											@if (definition.Antonyms is not null)
+											{
+												<li>Scoped antonym count: @definition.Antonyms.Length</li>
+												<ul>
+												@foreach (var antonym in definition.Antonyms)
+												{
+													<li>Antonym: @antonym</li>
+												}
+												</ul>
+											}
+										</ul>
+									}
+								}
+								@if (meaning.Synonyms is not null)
+								{
+									<li>Base synonym count: @meaning.Synonyms.Length</li>
+									<ul>
+										@foreach (var synonym in meaning.Synonyms)
+										{
+											<li>Synonym: @synonym</li>
+										}
+									</ul>
+								}
+								@if (meaning.Antonyms is not null)
+								{
+									<li>Base antonym count: @meaning.Antonyms.Length</li>
+									<ul>
+										@foreach (var antonym in meaning.Antonyms)
+										{
+											<li>Antonym: @antonym</li>
+										}
+									</ul>
+								}
+							</ul>
+						}
+					}
+					@if (result.Phonetics is not null)
+					{
+						<li>Phonetic count: @result.Phonetics.Length</li>
+						@foreach (var phonetic in result.Phonetics)
+						{
+							<ul>
+								<li>Phonetic: @phonetic.Text</li>
+								<li>Audio: @phonetic.Audio</li>
+								@if (!string.IsNullOrEmpty(phonetic.SourceUrl) && Uri.TryCreate(phonetic.SourceUrl, UriKind.RelativeOrAbsolute, out _))
+								{
+									<li><a href="@phonetic.SourceUrl">Source link here</a></li>
+								}
+								@if (phonetic.License is not null)
+								{
+									@if (!string.IsNullOrEmpty(phonetic.License.Url) && Uri.TryCreate(phonetic.License.Url, UriKind.RelativeOrAbsolute, out _))
+									{
+										<li>License name: <a href="@phonetic.License.Url">@phonetic.License.Name</a></li>
+									}
+								}
+							</ul>
+						}
+					}
+					@if (result.SourceUrls is not null)
+					{
+						<li>Source URLs: @result.SourceUrls.Length</li>
+						<ul>
+							@foreach (var source in result.SourceUrls)
+							{
+								@if (!string.IsNullOrEmpty(source) && Uri.TryCreate(source, UriKind.RelativeOrAbsolute, out _))
+								{
+									<li><a href="@source">Source link here</a></li>
+								}
+							}
+						</ul>
+					}
+					@if (result.LicenseInfo is not null)
+					{
+						<ul>
+							@if (!string.IsNullOrEmpty(result.LicenseInfo.Url) && Uri.TryCreate(result.LicenseInfo.Url, UriKind.RelativeOrAbsolute, out _))
+							{
+								<li>License name: <a href="@result.LicenseInfo.Url">@result.LicenseInfo.Name</a></li>
+							}
+						</ul>
+					}
+				</ul>
+			}
+		</ul>
+	}
+	<div class="d-grid gap-2 d-sm-flex">
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
+		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
+	</div>
+</BrandedBorder>
+
+@code {
+	public string Input { get; set; } = "network";
+	public DictionaryWord[] Results { get; set; }
+	public EventCallback[] ClickEvents => [
+		EventCallback.Factory.Create(this, ProcessInput),
+		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Nettify/api/Nettify.EnglishDictionary.DictionaryManager.html#Nettify_EnglishDictionary_DictionaryManager_GetWordInfo_System_String_"))),
+	];
+
+	public async Task ProcessInput()
+	{
+		Results = await DictionaryManager.GetWordInfoAsync(Input);
+	}
+}

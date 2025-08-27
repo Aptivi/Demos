@@ -99,9 +99,45 @@
 		<Features FeatureArray="@TextVersionDemonstrations" Invert="true" />
 	</BrandedBorder>
 </BrandedBorder>
+<BrandedBorder>
+	<h1>Nettify</h1>
+	<p>
+		This section showcases the useful demonstrations for the Nettify library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
+	<BrandedBorder>
+		<h1>Dictionary tools</h1>
+		<p>
+			The dictionary tools from the Nettify library can be found here.
+		</p>
+		<Features FeatureArray="@NetDictionaryDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>ISP tools</h1>
+		<p>
+			The ISP tools from the Nettify library can be found here.
+		</p>
+		<Features FeatureArray="@NetIspDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>RSS tools</h1>
+		<p>
+			The RSS tools from the Nettify library can be found here.
+		</p>
+		<Features FeatureArray="@NetRssDemonstrations" Invert="true" />
+	</BrandedBorder>
+	<BrandedBorder>
+		<h1>Weather tools</h1>
+		<p>
+			The weather tools (only the IBM Weather.com API) from the Nettify library can be found here.
+		</p>
+		<Features FeatureArray="@NetWeatherDemonstrations" Invert="true" />
+	</BrandedBorder>
+</BrandedBorder>
 
 @code
 {
+	#region Textify Demos
 	FeatureDescriptor[] TextDemonstrations =>
 	[
 		new()
@@ -835,4 +871,99 @@
 				"Showcases how Textify can compare versions using SemVer 2.0 compliant rules."
 		},
 	];
+	#endregion
+	#region Nettify Demos
+	FeatureDescriptor[] NetDictionaryDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Dictionary - Define",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/dictionary/define"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can define a word for you."
+		},
+	];
+	FeatureDescriptor[] NetIspDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "ISP - Get Info (select)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/isp/getinfoselect"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can get information about your ISP by selecting a host name."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "ISP - Get Info (manual - e-mail)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/isp/getinfomanualmail"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can get information about your ISP by entering the e-mail address."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "ISP - Get Info (manual - host)",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/isp/getinfomanualhost"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can get information about your ISP by entering the host name."
+		},
+	];
+	FeatureDescriptor[] NetRssDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "RSS - RSS feed reader",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/rss/feed"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can parse the RSS feeds from your favorite news outlet."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "RSS - RSS feed searcher",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/rss/search"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can search for favorite news outlet."
+		},
+	];
+	FeatureDescriptor[] NetWeatherDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Weather - Forecast Info",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/weather/forecast"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can get weather forecast using the Weather.com API (you'll need to purchase your API key from IBM)."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-font",
+			Title = "Weather - List cities",
+			Buttons = [
+				(EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("net/weather/list"))), "Showcase")
+			],
+			Description =
+				"Showcases how Nettify can list all cities using the Weather.com API (you'll need to purchase your API key from IBM)."
+		},
+	];
+	#endregion
 }
