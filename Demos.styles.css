@@ -20,27 +20,10 @@ main[b-a0d4n79m4u] {
     z-index: 1;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    padding-right: 2rem;
+    padding-left: 1rem;
 }
 /* /Shared/NavMenu.razor.rz.scp.css */
-.navbar-toggler[b-rpk0uah5qs] {
-    background-color: #432a4c70;
-}
-
-.top-row[b-rpk0uah5qs] {
-    height: 7rem;
-}
-
-.navbar-brand[b-rpk0uah5qs] {
-    font-size: 1.1rem;
-}
-
-.oi[b-rpk0uah5qs] {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: middle;
-    top: -2px;
-}
-
 .nav-item[b-rpk0uah5qs] {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
@@ -50,7 +33,7 @@ main[b-a0d4n79m4u] {
 }
 
     .nav-item[b-rpk0uah5qs]  a {
-        color: #C390D9;
+        color: white;
         border-radius: 4px;
         height: 3rem;
         display: flex;
@@ -60,25 +43,10 @@ main[b-a0d4n79m4u] {
 
         .nav-item[b-rpk0uah5qs]  a.active {
             background-color: #432a4c70;
-            color: #C390D9;
+            color: white;
         }
 
         .nav-item[b-rpk0uah5qs]  a:hover {
             background-color: #432a4c70;
-            color: #C390D9;
+            color: white;
         }
-
-.collapse[b-rpk0uah5qs] {
-    display: block;
-}
-
-.navbar-nav[b-rpk0uah5qs] {
-    flex-direction: row;
-    padding-right: .5rem;
-    padding-left: .5rem;
-}
-
-    .navbar-nav .nav-link[b-rpk0uah5qs] {
-        padding-right: .5rem;
-        padding-left: .5rem;
-    }
