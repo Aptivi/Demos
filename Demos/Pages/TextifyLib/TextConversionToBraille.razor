@@ -19,6 +19,10 @@
 <BrandedBorder>
 	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
 	<p>Result from <code>ToBraille()</code>: @Result</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Convert</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -26,7 +30,9 @@
 </BrandedBorder>
 
 @code {
-	public string Input { get; set; } = "Terminaux is powerful!";
+    public string Input { get; set; } = "Terminaux is powerful!";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -34,7 +40,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Result = BrailleBuilder.ToBraille(Input ?? "");
+    {
+        try
+        {
+            Errored = false;
+            Result = BrailleBuilder.ToBraille(Input ?? "");
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

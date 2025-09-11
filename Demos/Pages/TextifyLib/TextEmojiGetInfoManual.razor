@@ -23,6 +23,10 @@
 	<p>Sequence: @Sequence</p>
 	<p>Status: @Status</p>
 	<p>Enumeration: @Enumeration</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Get info</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -30,7 +34,9 @@
 </BrandedBorder>
 
 @code {
-	public string Input { get; set; } = "😊";
+    public string Input { get; set; } = "😊";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Name { get; set; }
 	public string Sequence { get; set; }
 	public EmojiStatus Status { get; set; }
@@ -41,11 +47,20 @@
 	];
 
 	public void ProcessInput()
-	{
-		var emojiInfo = EmojiManager.GetEmojiFromEmoji(Input);
-		Name = emojiInfo.Name;
-		Sequence = emojiInfo.Sequence;
-		Status = emojiInfo.Status;
-		Enumeration = emojiInfo.Enum;
+    {
+        try
+        {
+            Errored = false;
+            var emojiInfo = EmojiManager.GetEmojiFromEmoji(Input);
+            Name = emojiInfo.Name;
+            Sequence = emojiInfo.Sequence;
+            Status = emojiInfo.Status;
+            Enumeration = emojiInfo.Enum;
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

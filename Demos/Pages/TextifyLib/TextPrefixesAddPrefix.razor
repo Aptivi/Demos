@@ -21,6 +21,10 @@
 	<p>Enter some prefix: <InputText @bind-Value="Prefix"></InputText></p>
 	<label><InputCheckbox @bind-Value="Verify"></InputCheckbox> Verify the prefix</label>
 	<p>Result from <code>AddPrefix()</code>: @Result</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Add prefix</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -30,7 +34,9 @@
 @code {
 	public string Input { get; set; } = "Hello world!";
 	public string Prefix { get; set; } = "You're saying: ";
-	public bool Verify { get; set; } = true;
+    public bool Verify { get; set; } = true;
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -38,7 +44,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Result = (Input ?? "").AddPrefix(Prefix, Verify);
+    {
+        try
+        {
+            Errored = false;
+            Result = (Input ?? "").AddPrefix(Prefix, Verify);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

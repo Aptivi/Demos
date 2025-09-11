@@ -21,6 +21,10 @@
 	<p>Enter replacement source(s): <InputText @bind-Value="Sources"></InputText></p>
 	<p>Enter replacement target(s): <InputText @bind-Value="Targets"></InputText></p>
 	<p>Result from <code>ReplaceAllRange()</code>: @Result</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Process</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -30,7 +34,9 @@
 @code {
 	public string Input { get; set; } = "Whatever, it is bad, ugly, and insufferable!";
 	public string Sources { get; set; } = "bad|ugly|insufferable";
-	public string Targets { get; set; } = "awesome|attractive|gorgeous";
+    public string Targets { get; set; } = "awesome|attractive|gorgeous";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -38,12 +44,21 @@
 	];
 
 	public void ProcessInput()
-	{
-		string[] sources = Sources.Split("|");
-		string[] targets = Targets.Split("|");
-		if (sources.Length == targets.Length)
-			Result = $"{(Input ?? "").ReplaceAllRange(sources, targets)}";
-		else
-			Result = $"Source and target strings need to be at the same length when split (S: {sources.Length}, T: {targets.Length})";
+    {
+        try
+        {
+            Errored = false;
+            string[] sources = Sources.Split("|");
+            string[] targets = Targets.Split("|");
+            if (sources.Length == targets.Length)
+                Result = $"{(Input ?? "").ReplaceAllRange(sources, targets)}";
+            else
+                Result = $"Source and target strings need to be at the same length when split (S: {sources.Length}, T: {targets.Length})";
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

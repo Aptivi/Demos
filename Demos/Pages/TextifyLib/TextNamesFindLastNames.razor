@@ -45,7 +45,11 @@
 				}
 			</tbody>
 		</table>
-	}
+    }
+    else if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Find</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -57,7 +61,9 @@
 	public string Input { get; set; } = "";
 	public bool CheckPrefixesSuffixes { get; set; } = false;
 	public string Prefix { get; set; } = "";
-	public string Suffix { get; set; } = "";
+    public string Suffix { get; set; } = "";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string[] Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -66,10 +72,19 @@
 	];
 
 	public void ProcessInput()
-	{
-		Results =
-			CheckPrefixesSuffixes ?
-			NameGenerator.FindLastNames(Input, Prefix, Suffix) :
-			NameGenerator.FindLastNames(Input);
+    {
+        try
+        {
+            Errored = false;
+            Results =
+                CheckPrefixesSuffixes ?
+                NameGenerator.FindLastNames(Input, Prefix, Suffix) :
+                NameGenerator.FindLastNames(Input);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

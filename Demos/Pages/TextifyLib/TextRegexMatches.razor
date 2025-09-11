@@ -47,7 +47,11 @@
 				}
 			</tbody>
 		</table>
-	}
+    }
+    else if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Process</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -56,7 +60,9 @@
 
 @code {
 	public string Input { get; set; } = "Hello and welcome to Terminaux!";
-	public string Source { get; set; } = /*lang=regex*/ @"[AEIOUaeiou]";
+    public string Source { get; set; } = /*lang=regex*/ @"[AEIOUaeiou]";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public MatchCollection Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -64,7 +70,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Results = RegexTools.Matches(Input, Source);
+    {
+        try
+        {
+            Errored = false;
+            Results = RegexTools.Matches(Input, Source);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

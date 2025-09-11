@@ -57,7 +57,11 @@
 				}
 			</tbody>
 		</table>
-	}
+    }
+    else if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Get Kaomojis</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -68,7 +72,9 @@
 	public KaomojiCategory[] Categories = Enum.GetValues<KaomojiCategory>();
 	public KaomojiCategory Category { get; set; } = KaomojiCategory.Neutral;
 	public KaomojiSubcategory[] Subcategories = KaomojiManager.GetKaomojiSubcategories(KaomojiCategory.Neutral);
-	public KaomojiSubcategory Subcategory { get; set; } = KaomojiSubcategory.Greeting;
+    public KaomojiSubcategory Subcategory { get; set; } = KaomojiSubcategory.Greeting;
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string[] Kaomojis { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -81,8 +87,17 @@
 	}
 
 	private void VerifySubcategory()
-	{
-		Subcategories = KaomojiManager.GetKaomojiSubcategories(Category);
-		Subcategory = Subcategories[0];
+    {
+        try
+        {
+            Errored = false;
+            Subcategories = KaomojiManager.GetKaomojiSubcategories(Category);
+            Subcategory = Subcategories[0];
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }
