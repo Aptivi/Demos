@@ -20,7 +20,11 @@
 	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
 	<p>Result from <code>Escape()</code>: @ResultEscaped</p>
 	<p>Result from <code>Unescape()</code> from above: @ResultUnescaped</p>
-	<p>Result from <code>Unescape()</code> from original: @ResultUnescaped2</p>
+    <p>Result from <code>Unescape()</code> from original: @ResultUnescaped2</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Shift</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -29,7 +33,9 @@
 </BrandedBorder>
 
 @code {
-	public string Input { get; set; } = "This string needs to be escaped, because we have \"double quotes\", and a bunch of characters! What? No! The *asterisk* needs it, and so are the (brackets) and the \\(escaped ones\\).";
+    public string Input { get; set; } = "This string needs to be escaped, because we have \"double quotes\", and a bunch of characters! What? No! The *asterisk* needs it, and so are the (brackets) and the \\(escaped ones\\).";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string ResultEscaped { get; set; }
 	public string ResultUnescaped { get; set; }
 	public string ResultUnescaped2 { get; set; }
@@ -40,9 +46,18 @@
 	];
 
 	public void ProcessInput()
-	{
-		ResultEscaped = $"{(Input ?? "").Escape()}";
-		ResultUnescaped = $"{(ResultEscaped ?? "").Unescape()}";
-		ResultUnescaped2 = $"{(Input ?? "").Unescape()}";
+    {
+        try
+        {
+            Errored = false;
+            ResultEscaped = $"{(Input ?? "").Escape()}";
+            ResultUnescaped = $"{(ResultEscaped ?? "").Unescape()}";
+            ResultUnescaped2 = $"{(Input ?? "").Unescape()}";
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

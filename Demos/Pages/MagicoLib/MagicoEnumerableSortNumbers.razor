@@ -29,7 +29,11 @@
 				<li>@result</li>
 			}
 		</ul>
-	}
+    }
+    else if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Sort</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -37,7 +41,9 @@
 </BrandedBorder>
 
 @code {
-	public string Input { get; set; } = "12\n34\n56\n78\n90\n43\n28\n82\n62\n13\n83";
+    public string Input { get; set; } = "12\n34\n56\n78\n90\n43\n28\n82\n62\n13\n83";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public int[] Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -45,8 +51,17 @@
 	];
 
 	public void ProcessInput()
-	{
-		var inputLines = Input.SplitNewLines().Select(text => int.Parse(text)).ToArray();
-		Results = inputLines.SortNumbers();
+    {
+        try
+        {
+            Errored = false;
+            var inputLines = Input.SplitNewLines().Select(text => int.Parse(text)).ToArray();
+            Results = inputLines.SortNumbers();
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

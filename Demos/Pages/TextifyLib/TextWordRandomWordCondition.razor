@@ -30,7 +30,11 @@
 	<p>Enter a suffix: <InputText @bind-Value="Suffix"></InputText></p>
 	<p>Enter word max length: <InputNumber @bind-Value="MaxLength"></InputNumber></p>
 	<p>Enter word exact length: <InputNumber @bind-Value="ExactLength"></InputNumber></p>
-	<p>Result from <code>GetRandomWordConditional()</code>: @Result</p>
+    <p>Result from <code>GetRandomWordConditional()</code>: @Result</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -43,7 +47,9 @@
 	public int MaxLength { get; set; } = 0;
 	public int ExactLength { get; set; } = 0;
 	public string Prefix { get; set; } = "";
-	public string Suffix { get; set; } = "";
+    public string Suffix { get; set; } = "";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -51,7 +57,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Result = WordManager.GetRandomWordConditional(MaxLength, Prefix, Suffix, ExactLength, DataType);
+    {
+        try
+        {
+            Errored = false;
+            Result = WordManager.GetRandomWordConditional(MaxLength, Prefix, Suffix, ExactLength, DataType);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

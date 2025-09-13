@@ -69,7 +69,11 @@
 				</ul>
 			}
 		</ul>
-	}
+    }
+    else if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Get info</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -77,7 +81,9 @@
 </BrandedBorder>
 
 @code {
-	public string Isp { get; set; } = "gmail.com";
+    public string Isp { get; set; } = "gmail.com";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public ClientConfig Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -85,7 +91,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Result = IspTools.GetIspConfigFromHost(Isp);
+    {
+        try
+        {
+            Errored = false;
+            Result = IspTools.GetIspConfigFromHost(Isp);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

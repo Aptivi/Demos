@@ -28,7 +28,11 @@
 			}
 		</InputSelect>
 	</label>
-	<p>Result from <code>VerifyPrefix()</code>: @Result</p>
+    <p>Result from <code>VerifyPrefix()</code>: @Result</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Verify prefix</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -39,7 +43,9 @@
 	public StringComparison[] Comparisons = Enum.GetValues<StringComparison>();
 	public string Input { get; set; } = "You're saying: Hello world!";
 	public string Prefix { get; set; } = "You're saying: ";
-	public StringComparison Comparison { get; set; } = StringComparison.CurrentCulture;
+    public StringComparison Comparison { get; set; } = StringComparison.CurrentCulture;
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -47,7 +53,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Result = $"{(Input ?? "").VerifyPrefix(Prefix, Comparison)}";
+    {
+        try
+        {
+            Errored = false;
+            Result = $"{(Input ?? "").VerifyPrefix(Prefix, Comparison)}";
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

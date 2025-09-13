@@ -29,7 +29,11 @@
 				<li>@result</li>
 			}
 		</ul>
-	}
+    }
+    else if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Randomize</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -37,7 +41,9 @@
 </BrandedBorder>
 
 @code {
-	public string Input { get; set; } = "Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\nLine 10";
+    public string Input { get; set; } = "Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\nLine 10";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string[] Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -45,8 +51,17 @@
 	];
 
 	public void ProcessInput()
-	{
-		var inputLines = Input.SplitNewLines();
-		Results = inputLines.RandomizeArray();
+    {
+        try
+        {
+            Errored = false;
+            var inputLines = Input.SplitNewLines();
+            Results = inputLines.RandomizeArray();
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

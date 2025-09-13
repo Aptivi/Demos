@@ -31,6 +31,10 @@
 	</p>
 	<p>Original string to query: @Input</p>
 	<p>Result from <code>FilterProfanities()</code>: @Output</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Filter</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -40,7 +44,9 @@
 @code {
 	public ProfanitySearchType[] SearchTypes = Enum.GetValues<ProfanitySearchType>();
 	public ProfanitySearchType SearchType { get; set; } = ProfanitySearchType.Shallow;
-	public string Input { get; set; } = "Who gives a shit? Get off your fucking high horse! You suck b a l l s! Who lives in Scunthorpe? Who are these jackasses from Scunthorpe?";
+    public string Input { get; set; } = "Who gives a shit? Get off your fucking high horse! You suck b a l l s! Who lives in Scunthorpe? Who are these jackasses from Scunthorpe?";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Output { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -48,7 +54,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Output = ProfanityManager.FilterProfanities(Input, SearchType);
+    {
+        try
+        {
+            Errored = false;
+            Output = ProfanityManager.FilterProfanities(Input, SearchType);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

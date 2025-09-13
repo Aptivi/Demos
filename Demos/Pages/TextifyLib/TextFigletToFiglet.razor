@@ -30,6 +30,10 @@
 	{
 		<pre>@Result</pre>
 	}
+    else if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Render</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -40,7 +44,9 @@
 	public string[] FigletFontNames = FigletTools.GetFigletFonts().Keys.ToArray();
 	public string Input { get; set; } = "Terminaux is powerful!";
 	public int Width { get; set; } = 0;
-	public string FigletFontName { get; set; } = "small";
+    public string FigletFontName { get; set; } = "small";
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -48,7 +54,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Result = FigletTools.RenderFiglet(Input ?? "", FigletFontName, Width);
+    {
+        try
+        {
+            Errored = false;
+            Result = FigletTools.RenderFiglet(Input ?? "", FigletFontName, Width);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }

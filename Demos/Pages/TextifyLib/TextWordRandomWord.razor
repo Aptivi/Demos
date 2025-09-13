@@ -27,7 +27,11 @@
 			}
 		</InputSelect>
 	</p>
-	<p>Result from <code>GetRandomWord()</code>: @Result</p>
+    <p>Result from <code>GetRandomWord()</code>: @Result</p>
+    @if (Errored)
+    {
+        <p>Error obtaining results: @ErrorReason</p>
+    }
 	<div class="d-grid gap-2 d-sm-flex">
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[0]">Analyze</button>
 		<button class="btn btn-primary btn-lg" type="button" @onclick="@ClickEvents[1]">API Reference</button>
@@ -36,7 +40,9 @@
 
 @code {
 	public WordDataType[] DataTypes = Enum.GetValues<WordDataType>();
-	public WordDataType DataType { get; set; } = WordDataType.Words;
+    public WordDataType DataType { get; set; } = WordDataType.Words;
+    public bool Errored { get; set; } = false;
+    public string ErrorReason { get; set; } = "";
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
@@ -44,7 +50,16 @@
 	];
 
 	public void ProcessInput()
-	{
-		Result = WordManager.GetRandomWord(DataType);
+    {
+        try
+        {
+            Errored = false;
+            Result = WordManager.GetRandomWord(DataType);
+        }
+        catch (Exception ex)
+        {
+            Errored = true;
+            ErrorReason = ex.Message;
+        }
 	}
 }
