@@ -20,7 +20,7 @@
     }
 
 html, body {
-    font-family: Inter;
+    font-family: Inter, "Cairo";
     color: white;
     background-color: #010022 !important;
 }
@@ -30,13 +30,13 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Mono';
+    font-family: 'Space Mono', "Cairo";
     font-weight: 400;
     color: #C390D9;
 }
 
 code, pre {
-    font-family: 'JetBrains Mono';
+    font-family: 'JetBrains Mono', "Cairo";
     color: #C390D9;
     background-color: #010022 !important;
 }
@@ -66,7 +66,7 @@ pre {
 
     .navbar-default .navbar-brand {
         color: #752efd !important;
-        font-family: 'Space Mono';
+        font-family: 'Space Mono', "Cairo";
     }
 
 .navbar-fixed-top {
@@ -340,7 +340,7 @@ input#qsearch.form-control, div.input-group-btn {
 }
 
 .tooltip-apt {
-    font-family: Inter, sans-serif, 'Font Awesome 6 Free', 'Font Awesome 6 Brands';
+    font-family: Inter, "Cairo", sans-serif, 'Font Awesome 6 Free', 'Font Awesome 6 Brands';
     --bs-tooltip-bg: #C390D9;
     --bs-tooltip-color: #010022;
     --bs-tooltip-max-width: 700px;
