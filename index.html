@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Aptivi Project Demos</title>
+    <base href="/Demos/" />
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="Demos.styles.css" rel="stylesheet" />
+    <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <!-- Left-to-Right language based fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+
+    <!-- Right-to-Left language based fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+
+    <!-- More Metadata -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=1">
+    <link rel="manifest" href="/assets/site.webmanifest?v=1">
+    <link rel="mask-icon" href="/assets/safari-pinned-tab.svg?v=1" color="#5bbad5">
+    <link rel="shortcut icon" href="/assets/favicon.ico?v=2">
+    <meta name="description" content="Aptivi Project Demos is a demonstration website where you can showcase some of our projects' functions, such as text manipulation, name generation, and more.">
+    <meta name="apple-mobile-web-app-title" content="Aptivi Project Demos">
+    <meta name="application-name" content="Aptivi Project Demos">
+    <meta name="msapplication-TileColor" content="#010022">
+    <meta name="msapplication-config" content="/assets/browserconfig.xml?v=1">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        <div class="modal fade show" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-modal="true" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content jumbotron">
+                    <div class="modal-header">
+                        <h5 class="modal-title">An error occurred!</h5>
+                    </div>
+                    <div class="modal-body">
+                        We apologize for your inconvenience, but we've encountered an error.
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/" class="btn btn-primary" role="button" onclick="location.reload()">Reload</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>
