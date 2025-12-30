@@ -17,7 +17,10 @@
 	"Escape/Unescape" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>Result from <code>Escape()</code>: @ResultEscaped</p>
 	<p>Result from <code>Unescape()</code> from above: @ResultUnescaped</p>
     <p>Result from <code>Unescape()</code> from original: @ResultUnescaped2</p>

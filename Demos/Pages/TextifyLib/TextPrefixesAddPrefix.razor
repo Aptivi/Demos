@@ -17,8 +17,14 @@
 	"Add prefix" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter some prefix: <InputText @bind-Value="Prefix"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter some prefix:</label>
+		<InputText class="form-control" @bind-Value="Prefix"></InputText>
+	</div>
 	<label><InputCheckbox @bind-Value="Verify"></InputCheckbox> Verify the prefix</label>
 	<p>Result from <code>AddPrefix()</code>: @Result</p>
     @if (Errored)

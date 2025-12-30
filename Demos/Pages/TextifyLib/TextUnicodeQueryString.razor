@@ -18,7 +18,10 @@
 	"Get Unicode info for all characters in a string" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>Results from <code>QueryChar()</code></p>
 	@if (Results is not null)
 	{

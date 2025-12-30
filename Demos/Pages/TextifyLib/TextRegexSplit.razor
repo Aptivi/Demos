@@ -19,8 +19,14 @@
 	"Split with Regex" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter regex: <InputText @bind-Value="Source"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter regex:</label>
+		<InputText class="form-control" @bind-Value="Source"></InputText>
+	</div>
 	<p>Results from <code>Split()</code></p>
 	@if (Results is not null)
 	{

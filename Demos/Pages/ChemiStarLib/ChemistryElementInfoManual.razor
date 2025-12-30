@@ -18,7 +18,9 @@
 	"Get element info" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter atomic number: <InputNumber @bind-Value="AtomicNumber"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter atomic number: <InputNumber @bind-Value="AtomicNumber"></InputNumber></label>
+	</div>
 	<p>Results from <code>GetSubstance()</code></p>
 	@if (Result is not null)
 	{

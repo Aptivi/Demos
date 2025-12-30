@@ -17,8 +17,14 @@
 	"Starts with + no case sensitivity" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter part of text: <InputText @bind-Value="Part"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter part of text:</label>
+		<InputText class="form-control" @bind-Value="Part"></InputText>
+	</div>
 	<label>
 		String comparison method: <InputSelect @bind-Value="Comparison">
 			@for (int i = 0; i < Comparisons.Length; i++)

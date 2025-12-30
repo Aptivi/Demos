@@ -18,7 +18,10 @@
 	"Parse a Version" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter a version: <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter a version:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>Result from <code>Parse()</code></p>
 	@if (Result is not null)
 	{

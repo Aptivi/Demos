@@ -18,8 +18,14 @@
 	"Compare two versions" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter a source version: <InputText @bind-Value="Source"></InputText></p>
-	<p>Enter a target version: <InputText @bind-Value="Target"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter a source version:</label>
+		<InputText class="form-control" @bind-Value="Source"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter a target version:</label>
+		<InputText class="form-control" @bind-Value="Target"></InputText>
+	</div>
 	<p>Result from <code>CompareTo()</code>: @State [@(State == 0 ? "Equal" : State == 1 ? $"Source {Source} is newer" : $"Target {Target} is newer")]</p>
 	@if (SourceResult is not null && TargetResult is not null)
 	{

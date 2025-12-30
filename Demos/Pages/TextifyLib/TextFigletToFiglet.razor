@@ -17,8 +17,13 @@
 	"Render text using Figlet" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Max figlet width: <InputNumber @bind-Value="Width"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Max figlet width: <InputNumber class="form-control" @bind-Value="Width"></InputNumber></label>
+	</div>
 	<p>Use figlet font: <InputSelect @bind-Value="FigletFontName">
 			@foreach (string fontName in FigletFontNames)
 			{

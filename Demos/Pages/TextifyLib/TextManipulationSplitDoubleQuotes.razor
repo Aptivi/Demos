@@ -17,7 +17,10 @@
 	"Split a string with double quotes support" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter a string: <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<label><InputCheckbox @bind-Value="NoRelease"></InputCheckbox> Don't release the double quotes when splitting</label>
 	<p>Results from <code>SplitEncloseDoubleQuotes()</code></p>
 	@if (Results is not null)

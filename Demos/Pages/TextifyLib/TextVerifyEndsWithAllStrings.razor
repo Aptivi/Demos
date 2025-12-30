@@ -17,8 +17,14 @@
 	"Ends with all of strings" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter string sequences delimited by "|": <InputText @bind-Value="Sequences"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter string sequences delimited by "|":</label>
+		<InputText class="form-control" @bind-Value="Sequences"></InputText>
+	</div>
     <p>Result from <code>EndsWithAllOf()</code>: @Result</p>
     @if (Errored)
     {

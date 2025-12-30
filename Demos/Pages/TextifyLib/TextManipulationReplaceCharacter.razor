@@ -17,9 +17,17 @@
 	"Replace Character" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter replacement char index: <InputNumber @bind-Value="Source"></InputNumber></p>
-	<p>Enter replacement target: <InputText @bind-Value="Target"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter replacement char index: <InputNumber class="form-control" @bind-Value="Source"></InputNumber></label>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter replacement target:</label>
+		<InputText class="form-control" @bind-Value="Target"></InputText>
+	</div>
 	<p>Result from <code>ReplaceChar()</code>: @Result</p>
     @if (Errored)
     {

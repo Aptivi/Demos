@@ -20,7 +20,10 @@
 	"Space Analysis" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>Result from <code>AnalyzeSpaces()</code></p>
 	@if (Result is not null)
 	{

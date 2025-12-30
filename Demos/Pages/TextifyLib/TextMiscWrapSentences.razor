@@ -17,8 +17,16 @@
 	"Wrap long string to a set of sentences" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter a string: <InputText @bind-Value="Input"></InputText></p>
-	<p>Maximum width: <InputNumber @bind-Value="MaxWidth"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter a string:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Maximum width: <InputNumber class="form-control" @bind-Value="MaxWidth"></InputNumber></label>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Indentation length: <InputNumber class="form-control" @bind-Value="IndentLength"></InputNumber></label>
+	</div>
 	<p>Indentation length: <InputNumber @bind-Value="IndentLength"></InputNumber></p>
 	<label><InputCheckbox @bind-Value="ByWords"></InputCheckbox> Split by words</label>
 	<p>Results from <code>GetWrappedSentences()</code> or <code>GetWrappedSentencesByWords()</code></p>

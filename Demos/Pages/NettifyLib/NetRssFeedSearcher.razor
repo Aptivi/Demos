@@ -21,7 +21,10 @@
 	"Search your RSS feed" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter search term: <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter search term:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>Result from <code>GetRssFeedsAsync()</code></p>
 	@if (Result is not null)
 	{

@@ -18,10 +18,18 @@
 	"Generate the last names" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter number of names: <InputNumber @bind-Value="NameCount"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter number of names: <InputNumber class="form-control" @bind-Value="NameCount"></InputNumber></label>
+	</div>
 	<label><InputCheckbox @bind-Value="CheckPrefixesSuffixes"></InputCheckbox> Also check prefixes and suffixes</label>
-	<p>Enter a prefix: <InputText @bind-Value="Prefix" hidden="@(!CheckPrefixesSuffixes)"></InputText></p>
-	<p>Enter a suffix: <InputText @bind-Value="Suffix" hidden="@(!CheckPrefixesSuffixes)"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some prefix:</label>
+		<InputText class="form-control" @bind-Value="Prefix" hidden="@(!CheckPrefixesSuffixes)"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter some suffix:</label>
+		<InputText class="form-control" @bind-Value="Suffix" hidden="@(!CheckPrefixesSuffixes)"></InputText>
+	</div>
 	<p>Results from <code>GenerateLastNames()</code></p>
 	@if (Results is not null)
 	{

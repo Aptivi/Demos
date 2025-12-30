@@ -20,7 +20,10 @@
 	"Get Info about an ISP" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter e-mail address: <InputText @bind-Value="Isp"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter e-mail address:</label>
+		<InputText class="form-control" @bind-Value="Isp"></InputText>
+	</div>
 	<p>Result from <code>GetIspConfig()</code></p>
 	@if (Result is not null)
 	{

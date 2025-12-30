@@ -18,7 +18,10 @@
 	"Get Info about an Emoji" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter emoji (press <code>WINDOWS + .</code> key): <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter emoji (press <code>WINDOWS + .</code> key):</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>Result from <code>GetEmojiFromEmoji()</code>: @Name</p>
 	<p>Sequence: @Sequence</p>
 	<p>Status: @Status</p>

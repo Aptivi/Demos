@@ -17,8 +17,13 @@
 	"Shift Letters" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter shift threshold: <InputNumber @bind-Value="Shift"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter shift threshold: <InputNumber class="form-control" @bind-Value="Shift"></InputNumber></label>
+	</div>
 	<p>Result from <code>ShiftLetters()</code>: @Result</p>
     @if (Errored)
     {

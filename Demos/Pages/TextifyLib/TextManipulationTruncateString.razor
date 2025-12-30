@@ -17,8 +17,13 @@
 	"Truncate String" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter truncation threshold: <InputNumber @bind-Value="Threshold"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter truncation threshold: <InputNumber class="form-control" @bind-Value="Threshold"></InputNumber></label>
+	</div>
 	<p>Result from <code>TruncateString()</code>: @Result</p>
     @if (Errored)
     {

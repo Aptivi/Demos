@@ -18,7 +18,10 @@
 	"Search the first names" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter a search term: <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter a search term:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>
 		Gender: <InputSelect @bind-Value="Gender">
 			@foreach (var gender in Genders)
@@ -28,8 +31,14 @@
 		</InputSelect>
 	</p>
 	<label><InputCheckbox @bind-Value="CheckPrefixesSuffixes"></InputCheckbox> Also check prefixes and suffixes</label>
-	<p>Enter a prefix: <InputText @bind-Value="Prefix" hidden="@(!CheckPrefixesSuffixes)"></InputText></p>
-	<p>Enter a suffix: <InputText @bind-Value="Suffix" hidden="@(!CheckPrefixesSuffixes)"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some prefix:</label>
+		<InputText class="form-control" @bind-Value="Prefix" hidden="@(!CheckPrefixesSuffixes)"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter some suffix:</label>
+		<InputText class="form-control" @bind-Value="Suffix" hidden="@(!CheckPrefixesSuffixes)"></InputText>
+	</div>
 	<p>Results from <code>FindFirstNames()</code></p>
 	@if (Results is not null)
 	{

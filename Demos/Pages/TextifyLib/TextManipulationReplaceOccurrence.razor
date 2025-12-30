@@ -17,10 +17,21 @@
 	"Replace Occurrence" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter replacement source: <InputText @bind-Value="Source"></InputText></p>
-	<p>Enter replacement target: <InputText @bind-Value="Target"></InputText></p>
-	<p>Enter occurrence index (from zero): <InputNumber @bind-Value="OccurrenceIdx"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter replacement source:</label>
+		<InputText class="form-control" @bind-Value="Source"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter replacement target:</label>
+		<InputText class="form-control" @bind-Value="Target"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter occurrence index (from zero): <InputNumber class="form-control" @bind-Value="OccurrenceIdx"></InputNumber></label>
+	</div>
 	<p>Result from <code>ReplaceOccurrence()</code>: @Result</p>
     @if (Errored)
     {

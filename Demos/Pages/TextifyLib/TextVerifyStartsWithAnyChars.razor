@@ -17,8 +17,14 @@
 	"Starts with any of characters" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter char sequences: <InputText @bind-Value="Sequences"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter char sequences:</label>
+		<InputText class="form-control" @bind-Value="Sequences"></InputText>
+	</div>
     <p>Result from <code>StartsWithAnyOf()</code>: @Result</p>
     @if (Errored)
     {

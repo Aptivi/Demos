@@ -22,7 +22,9 @@
 	"Weather forecast info" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter latitude and longitude: <InputNumber @bind-Value="Latitude"></InputNumber> <InputNumber @bind-Value="Longitude"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter latitude and longitude: <InputNumber @bind-Value="Latitude"></InputNumber> <InputNumber @bind-Value="Longitude"></InputNumber></label>
+	</div>
 	<p>
 		Select measurement: <InputSelect @bind-Value="Measurement">
 			@foreach (var measurement in Measurements)

@@ -17,8 +17,14 @@
 	"Remove suffix" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter some text: <InputText @bind-Value="Input"></InputText></p>
-	<p>Enter some suffix: <InputText @bind-Value="Suffix"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter some text:</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter some suffix:</label>
+		<InputText class="form-control" @bind-Value="Suffix"></InputText>
+	</div>
     <p>Result from <code>RemoveSuffix()</code>: @Result</p>
     @if (Errored)
     {

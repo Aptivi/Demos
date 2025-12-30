@@ -26,10 +26,20 @@
 			}
 		</InputSelect>
 	</p>
-	<p>Enter a prefix: <InputText @bind-Value="Prefix"></InputText></p>
-	<p>Enter a suffix: <InputText @bind-Value="Suffix"></InputText></p>
-	<p>Enter word max length: <InputNumber @bind-Value="MaxLength"></InputNumber></p>
-	<p>Enter word exact length: <InputNumber @bind-Value="ExactLength"></InputNumber></p>
+	<div class="mb-3">
+		<label class="form-label">Enter a prefix:</label>
+		<InputText class="form-control" @bind-Value="Prefix"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter a suffix:</label>
+		<InputText class="form-control" @bind-Value="Suffix"></InputText>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter word max length: <InputNumber class="form-control" @bind-Value="MaxLength"></InputNumber></label>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Enter word exact length: <InputNumber class="form-control" @bind-Value="ExactLength"></InputNumber></label>
+	</div>
     <p>Result from <code>GetRandomWordConditional()</code>: @Result</p>
     @if (Errored)
     {

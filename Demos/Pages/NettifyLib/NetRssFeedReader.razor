@@ -21,7 +21,10 @@
 	"Read your RSS feed" feature.
 </Hero>
 <BrandedBorder>
-	<p>Enter host address (MUST be https://): <InputText @bind-Value="Input"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter host address (MUST be https://):</label>
+		<InputText class="form-control" @bind-Value="Input"></InputText>
+	</div>
 	<p>Result from the class constructor</p>
 	@if (Result is not null)
 	{
