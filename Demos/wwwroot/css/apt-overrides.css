@@ -81,12 +81,16 @@
     border-radius: inherit !important;
 }
 
-.accordion-item:not(:first-of-type) {
-    border-top-width: var(--apt-styling-border-width);
-    border-top-style: solid;
-    border-top-color: var(--apt-accent-1);
-    margin-top: 10px;
+.accordion-item {
+    background-color: var(--apt-accent-shade-4);
 }
+
+    .accordion-item:not(:first-of-type) {
+        border-top-width: var(--apt-styling-border-width);
+        border-top-style: solid;
+        border-top-color: var(--apt-accent-1);
+        margin-top: 10px;
+    }
 
 .accordion {
     --bs-accordion-btn-icon: var(--apt-arrow-down-svg-url);
@@ -95,7 +99,7 @@
 
 .accordion-button {
     color: var(--apt-accent-1);
-    background-color: var(--apt-accent-shade-3);
+    background-color: var(--apt-accent-shade-4);
     border-color: var(--apt-accent-1);
     border-width: var(--apt-styling-border-width);
     border-radius: inherit !important;
@@ -104,7 +108,7 @@
 
     .accordion-button:not(.collapsed) {
         color: var(--apt-accent-1);
-        background-color: var(--apt-accent-shade-3);
+        background-color: var(--apt-accent-shade-4);
         border-color: var(--apt-accent-1);
         border-width: var(--apt-styling-border-width);
         border-radius: inherit !important;
