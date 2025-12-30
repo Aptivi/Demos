@@ -3,9 +3,9 @@
 
 <PageTitle>Aptivi</PageTitle>
 
-<div class="sidebar">
+<aside class="sidebar translucency-rule-black position-fixed top-0 start-0 w-100">
 	<NavMenu />
-</div>
+</aside>
 
 <div class="page">
     <main>
@@ -15,18 +15,18 @@
     </main>
 </div>
 
-<div class="container">
-	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+<div class="container-fluid">
+	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3">
 		<div class="col-md-4 d-flex align-items-center">
-			<a href="/" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
+			<a href="/" class="me-2 mb-md-0 text-decoration-none lh-1">
 				<img src="assets/logos/aptivi-logo-transparent-ios.png" width="64" />
 			</a>
-			<span class="mb-3 mb-md-0">&copy; 2014-2025 Aptivi</span>
+			<span class="mb-md-0">&copy; 2014-2026 Aptivi</span>
 		</div>
 
-		<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
 			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://github.com/Aptivi"))"><span class="fa-brands fa-github" aria-hidden="true" /></a></li>
-            <li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://gitlab.com/Aptivi"))"><span class="fa-brands fa-gitlab" aria-hidden="true" /></a></li>
+			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://gitlab.com/Aptivi"))"><span class="fa-brands fa-gitlab" aria-hidden="true" /></a></li>
 			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://aptivi.gitbook.io/"))"><span class="fa-solid fa-book" aria-hidden="true" /></a></li>
 			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://mastodon.social/@official_aptivi"))"><span class="fa-brands fa-mastodon" aria-hidden="true" /></a></li>
 			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://x.com/OfficialAptivi"))"><span class="fa-brands fa-x-twitter" aria-hidden="true" /></a></li>

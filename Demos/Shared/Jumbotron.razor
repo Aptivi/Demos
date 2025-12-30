@@ -1,15 +1,32 @@
 ﻿<BrandedBorder ExtraStyles="@ExtraStyles">
-	<div class="container-fluid py-5">
-		<h1 class="display-5">@Title</h1>
-		<p class="col-md-8 fs-4">@ChildContent</p>
-		@if (Buttons is not null)
-		{
-			@foreach (var button in Buttons)
+	<div class="d-flex flex-column flex-md-row justify-content-between">
+		<div class="container-fluid order-2 order-md-1">
+			<h1>@Title</h1>
+			<p>@ChildContent</p>
+			@if (Buttons is not null)
 			{
-				<button class="btn btn-primary btn-lg" type="button" @onclick="@button.Item1">@button.Item2</button>
+				@foreach (var button in Buttons)
+				{
+					<button class="btn btn-primary" type="button" @onclick="@button.Item1">@button.Item2</button>
+				}
 			}
+			<a href="@SourceLink" class="sub">@SourceText</a>
+		</div>
+		@if (Branded)
+		{
+			<div class="text-center text-md-end order-1 order-md-2">
+				@if (!string.IsNullOrEmpty(FontAwesomeIconClasses))
+				{
+					<p class="m-5 d-inline-flex align-items-center justify-content-center" style="color: var(--apt-accent-1); width: 250px; height: 250px; max-width: 90vw; max-height: 90vw; font-size: clamp(4rem, 8vw, 10rem);">
+						<i class="@FontAwesomeIconClasses"/>
+					</p>
+				}
+				else
+				{
+					<img class="img-fluid m-5" src="@BrandImage" style="max-width: 60%;" />
+				}
+			</div>
 		}
-		<a href="@SourceLink" class="sub">@SourceText</a>
 	</div>
 </BrandedBorder>
 
@@ -24,6 +41,12 @@
 	public string SourceText { get; set; }
 	[Parameter]
 	public string SourceLink { get; set; }
+	[Parameter]
+	public bool Branded { get; set; }
+	[Parameter]
+	public string BrandImage { get; set; } = "assets/logos/aptivi-logo-transparent-ios.png";
+	[Parameter]
+	public string FontAwesomeIconClasses { get; set; } = "";
 	[Parameter]
 	public RenderFragment ChildContent { get; set; }
 }

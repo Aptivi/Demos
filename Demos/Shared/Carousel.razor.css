@@ -1,0 +1,25 @@
+﻿.carousel-caption {
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-content: end;
+    padding-bottom: 2em;
+}
+
+.caption-content {
+    display: none;
+}
+
+    .caption-content.active {
+        display: block;
+    }
+
+.carousel-control-next-icon {
+    background-image: var(--apt-arrow-left-svg-url);
+}
+
+.carousel-control-prev-icon {
+    background-image: var(--apt-arrow-right-svg-url);
+}

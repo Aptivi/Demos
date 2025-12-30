@@ -1,15 +1,15 @@
-﻿<div class="px-4 py-5 my-5 text-center w-100 h-100">
+﻿<div class="px-4 py-5 text-center w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center">
 	<img class="d-block mx-auto mb-4" src="@ImageSource" alt="" width="256" height="256">
-	<h1 class="display-5">@Title</h1>
+	<h1>@Title</h1>
 	<div class="col-lg-6 mx-auto">
-		<p class="lead mb-4">@ChildContent</p>
+		<p>@ChildContent</p>
 		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 			@if (Buttons is not null)
 			{
 				int idx = 0;
 				@foreach (var button in Buttons)
 				{
-					string buttonClass = idx == 0 ? "btn btn-primary btn-lg px-4 gap-3" : "btn btn-secondary btn-lg px-4";
+					string buttonClass = idx == 0 ? "btn btn-primary px-4 gap-3" : "btn btn-secondary px-4";
 					<button class="@buttonClass" type="button" @onclick="@button.Item1">@button.Item2</button>
 					idx++;
 				}

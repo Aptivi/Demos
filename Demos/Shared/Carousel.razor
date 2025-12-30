@@ -1,0 +1,85 @@
+﻿@using Demos.Data
+
+<div class="carousel-container">
+	<div id="@Id" class="carousel slide mb-6" data-bs-ride="carousel" data-carousel-id="@Id" style="padding: 0 0 2em">
+		<div class="carousel-inner jumbotron" style="border-radius: 12px">
+			@if (Slides is not null)
+			{
+				int idx = 0;
+				@foreach (var slide in Slides)
+				{
+					string current = idx == 0 ? "active" : "";
+					<div class="carousel-item @current" data-caption-index="@idx">
+						<img class="d-block w-100 bg-gradient" src="@slide.Picture" alt="Slide @(idx + 1)">
+					</div>
+					idx++;
+				}
+			}
+		</div>
+	</div>
+	<BrandedBorder>
+		<div class="d-flex w-100">
+			<button class="btn btn-primary px-4 gap-3" type="button" data-bs-target="#@Id" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<div class="carousel-captions-container mx-5 w-100">
+				@if (Slides is not null)
+				{
+					int idx = 0;
+					@foreach (var slide in Slides)
+					{
+						string current = idx == 0 ? "active" : "";
+						<div class="caption-content text-center @current" data-caption-index="@idx">
+							<h1>@slide.Title</h1>
+							<p>@slide.Description</p>
+						</div>
+						idx++;
+					}
+				}
+			</div>
+			<button class="btn btn-primary px-4 gap-3" type="button" data-bs-target="#@Id" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</BrandedBorder>
+	<script>
+		(function() {
+			const container = document.currentScript.closest('.carousel-container');
+			if (!container) return;
+			console.log('getid');
+			const carouselElement = container.querySelector('.carousel.slide');
+			if (!carouselElement) return;
+			console.log('container');
+			const carouselId = carouselElement.getAttribute('data-carousel-id');
+			if (!carouselId) return;
+			console.log('update');
+			function updateCaption() {
+				console.log('Caption updated ', carouselId);
+				const active = carouselElement.querySelector('.carousel-item.active');
+				if (!active) return;
+				const captionIdx = active.getAttribute('data-caption-index');
+				console.log('Caption updated idx ', captionIdx);
+				container.querySelectorAll('.caption-content').forEach(caption => {
+					caption.classList.remove('active');
+				});
+				const activeCaption = container.querySelector('.caption-content[data-caption-index="' + captionIdx + '"]');
+				if (activeCaption) {
+					activeCaption.classList.add('active');
+				}
+			}
+			carouselElement.addEventListener('slid.bs.carousel', updateCaption);
+			container.addEventListener('slid.bs.carousel', updateCaption);
+			updateCaption();
+		})();
+	</script>
+</div>
+
+@code
+{
+	[Parameter]
+	public string Id { get; set; } = "DefaultCarousel";
+	[Parameter]
+	public SlideDescriptor[] Slides { get; set; } = [];
+}

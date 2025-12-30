@@ -1,0 +1,35 @@
+﻿@inject NavigationManager NavManager
+
+@if (Pictures is not null)
+{
+	int pictureNum = 0;
+	<div class="row g-4 row-cols-1 row-cols-lg-3">
+		@if (PreviewLinks is not null)
+		{
+			@foreach (var picture in Pictures)
+			{
+				EventCallback previewLink = PreviewLinks[pictureNum];
+				pictureNum++;
+				<div class="col d-flex align-items-start">
+					<img class="img-fluid bordered" src="@picture" @onclick="previewLink" />
+				</div>
+			}
+		}
+		else
+		{
+			@foreach (var picture in Pictures)
+			{
+				<div class="col d-flex align-items-start">
+					<img class="img-fluid bordered" src="@picture" />
+				</div>
+			}
+		}
+	</div>
+}
+
+@code {
+	[Parameter]
+	public string[] Pictures { get; set; }
+	[Parameter]
+	public EventCallback[] PreviewLinks { get; set; }
+}

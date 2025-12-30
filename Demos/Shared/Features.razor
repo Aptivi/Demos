@@ -2,12 +2,11 @@
 
 @if (FeatureArray is not null)
 {
-	string IconSquareType = Invert ? "icon-square-invert" : "icon-square";
-	<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+	<div class="row g-4 row-cols-1 row-cols-xl-3">
 		@foreach (var feature in FeatureArray)
 		{
 			<div class="col d-flex align-items-start">
-				<div class="@IconSquareType bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+				<div class="icon-square bg-body-secondary d-inline-flex align-items-center justify-content-center fs-1 flex-shrink-0 me-3">
 					<span class="@feature.IconClass" aria-hidden="true" />
 				</div>
 				<div>
@@ -18,7 +17,7 @@
 						{
 							@foreach (var button in @feature.Buttons)
 							{
-								<button class="btn btn-primary btn-lg" type="button" @onclick="@button.Item1">@button.Item2</button>
+								<button class="btn btn-primary" type="button" @onclick="@button.Item1">@button.Item2</button>
 							}
 						}
 					</div>
@@ -29,8 +28,6 @@
 }
 
 @code {
-	[Parameter]
-	public bool Invert { get; set; }
 	[Parameter]
 	public FeatureDescriptor[] FeatureArray { get; set; }
 }

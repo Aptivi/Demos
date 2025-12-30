@@ -1,0 +1,7 @@
+﻿.carousel-control-next-icon {
+    background-image: var(--apt-arrow-left-svg-url);
+}
+
+.carousel-control-prev-icon {
+    background-image: var(--apt-arrow-right-svg-url);
+}
