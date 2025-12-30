@@ -10,11 +10,14 @@
     background-color: var(--apt-accent-shade-4-shadow) !important;
 }
 
-.bordered, .table-bordered, .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td, .table > thead > tr > th {
+.bordered,
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td,
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th,
+.table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     border: solid;
     border-color: var(--apt-accent-1);
     border-width: var(--apt-styling-border-width);
-    border-radius: var(--apt-styling-border-radius);
 }
 
 .sub {
