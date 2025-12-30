@@ -1,4 +1,5 @@
-﻿<div class="p-5 mb-4 jumbotron rounded-3 background-gradient" style="@ExtraStyles">
+﻿@using Demos.Data
+<div class="p-5 mb-4 jumbotron rounded-3 @BackgroundClass" style="@ExtraStyles">
 	@ChildContent
 </div>
 
@@ -6,5 +7,12 @@
 	[Parameter]
 	public string ExtraStyles { get; set; }
 	[Parameter]
+	public BackgroundType BackgroundType { get; set; }
+	[Parameter]
 	public RenderFragment ChildContent { get; set; }
+
+	public string BackgroundClass =>
+		BackgroundType == BackgroundType.Primary ? "background-primary" :
+		BackgroundType == BackgroundType.Alternative ? "background-alternative" :
+		BackgroundType == BackgroundType.Gradient ? "background-gradient" : "background-gradient";
 }

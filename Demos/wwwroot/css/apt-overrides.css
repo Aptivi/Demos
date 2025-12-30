@@ -51,7 +51,6 @@
     border-color: var(--apt-accent-1);
     border-width: var(--apt-styling-border-width);
     border-radius: var(--apt-styling-border-radius) !important;
-    background-color: var(--apt-accent-shade-4) !important;
     color: var(--apt-accent-2) !important;
 }
 
