@@ -33,7 +33,10 @@
 			}
 		</InputSelect>
 	</p>
-	<p>Enter API key: <InputText @bind-Value="APIKey"></InputText></p>
+	<div class="mb-3">
+		<label class="form-label">Enter API key:</label>
+		<InputText class="form-control" @bind-Value="APIKey"></InputText>
+	</div>
 	<p>Result from <code>GetWeatherInfoAsync()</code></p>
 	@if (Result is not null)
 	{

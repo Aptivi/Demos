@@ -2,11 +2,12 @@
     color: var(--apt-accent-1);
 }
 
-.btn-primary, .btn, .form-control {
+.btn-primary, .btn, .form-control, .form-text {
     color: var(--apt-accent-2);
     background-color: var(--apt-accent-shade-3);
     border-color: var(--apt-accent-1);
     border-width: var(--apt-styling-border-width);
+    border-radius: var(--apt-styling-border-radius);
 }
 
     .btn-primary:hover, .btn:hover, .btn-primary:active, .btn:active, .btn.show {
@@ -37,6 +38,7 @@
     background-color: var(--apt-accent-back);
     border-color: var(--apt-accent-1);
     border-width: var(--apt-styling-border-width);
+    border-radius: var(--apt-styling-border-radius);
 }
 
     .btn-secondary:hover, .btn-secondary:active {
