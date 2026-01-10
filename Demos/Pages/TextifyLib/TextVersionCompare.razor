@@ -10,7 +10,7 @@
 @using Demos.Data
 @using System.Text.RegularExpressions
 @using Textify.Versioning
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Versioning - Comparison">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -85,7 +85,7 @@
 	public int State { get; set; } = 0;
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Versioning.SemVer.html#Textify_Versioning_SemVer_Parse_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Versioning.SemVer.html#Textify_Versioning_SemVer_Parse_System_String_", "_blank"))),
 	];
 
 	public void ProcessInput()

@@ -10,7 +10,7 @@
 @using Demos.Data
 @using Magico.Enumeration
 @using Textify.General
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Magico - Enumerable - Sort Numbers">
 	You can demonstrate a feature from Magico where we showcase this feature,
@@ -47,7 +47,7 @@
 	public int[] Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Magico/api/Magico.Enumeration.ArrayTools.html#Magico_Enumeration_ArrayTools_SortNumbers__1___0___"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Magico/api/Magico.Enumeration.ArrayTools.html#Magico_Enumeration_ArrayTools_SortNumbers__1___0___", "_blank"))),
 	];
 
 	public void ProcessInput()

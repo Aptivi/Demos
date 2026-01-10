@@ -11,7 +11,7 @@
 @using System.Text.RegularExpressions
 @using Textify.General
 @using Textify.Tools
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Regex - Split">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -69,7 +69,7 @@
 	public string[] Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Tools.RegexTools.html#Textify_Tools_RegexTools_Split_System_String_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Tools.RegexTools.html#Textify_Tools_RegexTools_Split_System_String_System_String_", "_blank"))),
 	];
 
 	public void ProcessInput()

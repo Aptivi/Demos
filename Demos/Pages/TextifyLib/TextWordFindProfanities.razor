@@ -12,7 +12,7 @@
 @using Textify.Data.Words
 @using Textify.Data.Words.Profanity
 @using Textify.General
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Words - Find Profanities">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -78,7 +78,7 @@
 	public ProfanityOccurrenceInfo[] Profanities { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Words.Profanity.ProfanityManager.html#Textify_Data_Words_Profanity_ProfanityManager_GetProfanities_System_String_Textify_Data_Words_Profanity_ProfanitySearchType_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Data.Words.Profanity.ProfanityManager.html#Textify_Data_Words_Profanity_ProfanityManager_GetProfanities_System_String_Textify_Data_Words_Profanity_ProfanitySearchType_", "_blank"))),
 	];
 
 	public void ProcessInput()

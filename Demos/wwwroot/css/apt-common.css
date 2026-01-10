@@ -52,3 +52,12 @@
 .background-gradient {
     background: var(--apt-accent-back-gradient);
 }
+
+.icon-square {
+    width: 15rem;
+    height: 15rem;
+    font-size: 8rem;
+    border-radius: var(--apt-styling-border-radius);
+    background-color: var(--apt-accent-back) !important;
+    color: var(--apt-accent-1) !important;
+}

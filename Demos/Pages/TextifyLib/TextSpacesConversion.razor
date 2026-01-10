@@ -13,7 +13,7 @@
 @using Textify.General
 @using Textify.SpaceManager.Analysis
 @using Textify.SpaceManager.Conversion
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Spaces - Conversion">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -48,8 +48,8 @@
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.SpaceManager.Conversion.SpaceConversionTools.html#Textify_SpaceManager_Conversion_SpaceConversionTools_ConvertSpacesToString_Textify_SpaceManager_Analysis_SpaceAnalysisResult_"))),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.SpaceManager.Conversion.SpaceConversionTools.html#Textify_SpaceManager_Conversion_SpaceConversionTools_ConvertSpacesSimple_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.SpaceManager.Conversion.SpaceConversionTools.html#Textify_SpaceManager_Conversion_SpaceConversionTools_ConvertSpacesToString_Textify_SpaceManager_Analysis_SpaceAnalysisResult_", "_blank"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.SpaceManager.Conversion.SpaceConversionTools.html#Textify_SpaceManager_Conversion_SpaceConversionTools_ConvertSpacesSimple_System_String_", "_blank"))),
 	];
 
 	public void ProcessInput()

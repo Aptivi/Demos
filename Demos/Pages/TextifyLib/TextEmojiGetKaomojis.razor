@@ -10,7 +10,7 @@
 @using Demos.Data
 @using Textify.Accessibility
 @using Textify.Data.Unicode
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Emoji - Get Kaomojis">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -78,7 +78,7 @@
 	public string[] Kaomojis { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Unicode.KaomojiManager.html#Textify_Data_Unicode_KaomojiManager_GetKaomojis_Textify_Data_Unicode_KaomojiCategory_Textify_Data_Unicode_KaomojiSubcategory_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Data.Unicode.KaomojiManager.html#Textify_Data_Unicode_KaomojiManager_GetKaomojis_Textify_Data_Unicode_KaomojiCategory_Textify_Data_Unicode_KaomojiSubcategory_", "_blank"))),
 	];
 
 	public void ProcessInput()

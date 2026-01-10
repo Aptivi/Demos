@@ -9,7 +9,7 @@
 @using System.Text.Json
 @using Demos.Data
 @using Nettify.EnglishDictionary
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Nettify - Dictionary - Define">
 	You can demonstrate a feature from Nettify where we showcase this feature,
@@ -158,7 +158,7 @@
 	public DictionaryWord[] Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Nettify/api/Nettify.EnglishDictionary.DictionaryManager.html#Nettify_EnglishDictionary_DictionaryManager_GetWordInfo_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Nettify/api/Nettify.EnglishDictionary.DictionaryManager.html#Nettify_EnglishDictionary_DictionaryManager_GetWordInfo_System_String_", "_blank"))),
 	];
 
 	public async Task ProcessInput()

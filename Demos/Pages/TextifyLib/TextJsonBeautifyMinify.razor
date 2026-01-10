@@ -10,7 +10,7 @@
 @using Demos.Data
 @using Textify.Data.Figlet
 @using Textify.Tools
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - JSON - Beautify and Minify">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -45,8 +45,8 @@
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, () => ProcessInput(false)),
 		EventCallback.Factory.Create(this, () => ProcessInput(true)),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_BeautifyJsonText_System_String_"))),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_MinifyJsonText_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_BeautifyJsonText_System_String_", "_blank"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_MinifyJsonText_System_String_", "_blank"))),
 	];
 
 	public void ProcessInput(bool minify)

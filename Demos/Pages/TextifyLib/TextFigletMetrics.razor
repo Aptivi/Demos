@@ -10,7 +10,7 @@
 @using Demos.Data
 @using Textify.Data.Figlet
 @using Textify.Data.Figlet.Utilities.Lines
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Figlet - Metrics">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -69,8 +69,8 @@
 	public string[] ResultComments { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Figlet.FigletTools.html#Textify_Data_Figlet_FigletTools_GetFigletHeight_System_String_Textify_Data_Figlet_Utilities_Lines_FigletFont_System_Int32_"))),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Figlet.FigletTools.html#Textify_Data_Figlet_FigletTools_GetFigletWidth_System_String_Textify_Data_Figlet_Utilities_Lines_FigletFont_System_Int32_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Data.Figlet.FigletTools.html#Textify_Data_Figlet_FigletTools_GetFigletHeight_System_String_Textify_Data_Figlet_Utilities_Lines_FigletFont_System_Int32_", "_blank"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Data.Figlet.FigletTools.html#Textify_Data_Figlet_FigletTools_GetFigletWidth_System_String_Textify_Data_Figlet_Utilities_Lines_FigletFont_System_Int32_", "_blank"))),
 	];
 
 	public void ProcessInput()

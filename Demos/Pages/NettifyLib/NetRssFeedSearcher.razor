@@ -13,7 +13,7 @@
 @using Nettify.Rss.Searcher
 @using Textify.Accessibility
 @using Textify.Data.Unicode
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - RSS - RSS feed searcher">
 	You can demonstrate a feature from Nettify where we showcase this feature,
@@ -54,7 +54,7 @@
 	public SearcherInstance[] Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Nettify/api/Nettify.Rss.Searcher.SearcherTools.html#Nettify_Rss_Searcher_SearcherTools_GetRssFeedsAsync_System_String_System_Int32_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Nettify/api/Nettify.Rss.Searcher.SearcherTools.html#Nettify_Rss_Searcher_SearcherTools_GetRssFeedsAsync_System_String_System_Int32_", "_blank"))),
 	];
 
 	public async Task ProcessInput()

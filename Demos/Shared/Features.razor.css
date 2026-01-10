@@ -1,7 +1,0 @@
-﻿.icon-square {
-    width: 5rem;
-    height: 5rem;
-    border-radius: var(--apt-styling-border-radius);
-    background-color: var(--apt-accent-shade-3) !important;
-    color: var(--apt-accent-1) !important;
-}

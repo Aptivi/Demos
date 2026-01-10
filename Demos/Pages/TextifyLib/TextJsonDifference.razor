@@ -12,7 +12,7 @@
 @using Newtonsoft.Json.Linq
 @using Textify.Data.Figlet
 @using Textify.Tools
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - JSON - Difference">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -55,7 +55,7 @@
 	public string Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_FindDifferences_Newtonsoft_Json_Linq_JToken_Newtonsoft_Json_Linq_JToken_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Tools.JsonTools.html#Textify_Tools_JsonTools_FindDifferences_Newtonsoft_Json_Linq_JToken_Newtonsoft_Json_Linq_JToken_", "_blank"))),
 	];
 
 	public void ProcessInput()

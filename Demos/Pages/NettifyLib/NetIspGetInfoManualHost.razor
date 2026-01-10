@@ -12,7 +12,7 @@
 @using Nettify.MailAddress.IspInfo
 @using Textify.Accessibility
 @using Textify.Data.Unicode
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - ISP - Get Info (manual - host)">
 	You can demonstrate a feature from Nettify where we showcase this feature,
@@ -83,7 +83,7 @@
 	public ClientConfig Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Nettify/api/Nettify.MailAddress.IspTools.html#Nettify_MailAddress_IspTools_GetIspConfig_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Nettify/api/Nettify.MailAddress.IspTools.html#Nettify_MailAddress_IspTools_GetIspConfig_System_String_", "_blank"))),
 	];
 
 	public void ProcessInput()

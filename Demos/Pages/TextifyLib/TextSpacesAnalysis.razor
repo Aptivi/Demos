@@ -12,7 +12,7 @@
 @using Textify.Data.Words
 @using Textify.General
 @using Textify.SpaceManager.Analysis
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Spaces - Analysis">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -64,7 +64,7 @@
 	public SpaceAnalysisResult Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.SpaceManager.Analysis.SpaceAnalysisTools.html#Textify_SpaceManager_Analysis_SpaceAnalysisTools_AnalyzeSpaces_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.SpaceManager.Analysis.SpaceAnalysisTools.html#Textify_SpaceManager_Analysis_SpaceAnalysisTools_AnalyzeSpaces_System_String_", "_blank"))),
 	];
 
 	public void ProcessInput()

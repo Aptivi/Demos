@@ -14,7 +14,7 @@
 @using Nettify.Weather
 @using Textify.Accessibility
 @using Textify.Data.Unicode
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Weather - Forecast Info">
 	You can demonstrate a feature from Nettify where we showcase this feature,
@@ -70,7 +70,7 @@
 	public WeatherForecastInfo Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Nettify/api/Nettify.Weather.WeatherForecast.html#Nettify_Weather_WeatherForecast_GetWeatherInfoAsync_System_Double_System_Double_System_String_Nettify_Weather_UnitMeasurement_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Nettify/api/Nettify.Weather.WeatherForecast.html#Nettify_Weather_WeatherForecast_GetWeatherInfoAsync_System_Double_System_Double_System_String_Nettify_Weather_UnitMeasurement_", "_blank"))),
 	];
 
 	public async Task ProcessInput()

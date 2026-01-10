@@ -10,7 +10,7 @@
 @using Demos.Data
 @using Textify.Data.NameGen
 @using Textify.General
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Names - Find Last Names">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -76,8 +76,8 @@
 	public string[] Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.NameGen.NameGenerator.html#Textify_Data_NameGen_NameGenerator_FindLastNames_System_String_"))),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.NameGen.NameGenerator.html#Textify_Data_NameGen_NameGenerator_FindLastNames_System_String_System_String_System_String_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Data.NameGen.NameGenerator.html#Textify_Data_NameGen_NameGenerator_FindLastNames_System_String_", "_blank"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Data.NameGen.NameGenerator.html#Textify_Data_NameGen_NameGenerator_FindLastNames_System_String_System_String_System_String_", "_blank"))),
 	];
 
 	public void ProcessInput()

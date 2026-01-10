@@ -10,7 +10,7 @@
 @using Demos.Data
 @using Textify.Data.Unicode
 @using Textify.General
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Textify - Unicode - Query String">
 	You can demonstrate a feature from Textify where we showcase the text casing feature,
@@ -67,7 +67,7 @@
 	public List<UnicodeCharInfo> Results { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/Textify/api/Textify.Data.Unicode.UnicodeQuery.html#Textify_Data_Unicode_UnicodeQuery_QueryChar_System_Char_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/Textify/api/Textify.Data.Unicode.UnicodeQuery.html#Textify_Data_Unicode_UnicodeQuery_QueryChar_System_Char_", "_blank"))),
 	];
 
 	public void ProcessInput()

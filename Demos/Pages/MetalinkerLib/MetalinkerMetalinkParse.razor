@@ -10,7 +10,7 @@
 @using Metalinker
 @using Demos.Data
 @using Metalinker.Instances
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="Metalinker - Metalink - Parse">
 	You can demonstrate a feature from Metalinker where we showcase this feature,
@@ -115,7 +115,7 @@
 	public Metalink Result { get; set; }
 	public EventCallback[] ClickEvents => [
 		EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/ChemiStar/api/ChemiStar.PeriodicTableParser.html#ChemiStar_PeriodicTableParser_GetSubstance_System_Int32_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/ChemiStar/api/ChemiStar.PeriodicTableParser.html#ChemiStar_PeriodicTableParser_GetSubstance_System_Int32_", "_blank"))),
 	];
 
 	public void ProcessInput()

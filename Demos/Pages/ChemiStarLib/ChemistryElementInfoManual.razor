@@ -10,7 +10,7 @@
 @using ChemiStar
 @using ChemiStar.Data
 @using Demos.Data
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <Hero Title="ChemiStar - Periodic Table - Element Info (manual)">
 	You can demonstrate a feature from ChemiStar where we showcase this feature,
@@ -55,7 +55,7 @@
     public SubstanceInfo Result { get; set; }
     public EventCallback[] ClickEvents => [
         EventCallback.Factory.Create(this, ProcessInput),
-		EventCallback.Factory.Create(this, new Action(() => NavManager.NavigateTo("https://aptivi.github.io/ChemiStar/api/ChemiStar.PeriodicTableParser.html#ChemiStar_PeriodicTableParser_GetSubstance_System_Int32_"))),
+		EventCallback.Factory.Create(this, new Action(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.github.io/ChemiStar/api/ChemiStar.PeriodicTableParser.html#ChemiStar_PeriodicTableParser_GetSubstance_System_Int32_", "_blank"))),
 	];
 
     public void ProcessInput()
