@@ -1,29 +1,31 @@
 ﻿@using Demos.Data
 
-<div class="carousel-container">
-	<div id="@Id" class="carousel slide mb-6" data-bs-ride="carousel" style="padding: 0 0 2em">
-		<div class="carousel-inner jumbotron" style="border-radius: 12px">
-			@if (Slides is not null)
-			{
-				int idx = 0;
-				@foreach (var slide in Slides)
+<div class="general-container">
+	<div class="carousel-container">
+		<div id="@Id" class="carousel slide mb-6" data-bs-ride="carousel" style="padding: 0 0 2em">
+			<div class="carousel-inner jumbotron" style="border-radius: 12px">
+				@if (Slides is not null)
 				{
-					string current = idx == 0 ? "active" : "";
-					<div class="carousel-item @current">
-						<img class="d-block w-100 bg-gradient" src="@slide.Picture">
-					</div>
-					idx++;
+					int idx = 0;
+					@foreach (var slide in Slides)
+					{
+						string current = idx == 0 ? "active" : "";
+						<div class="carousel-item @current">
+							<img class="d-block w-100 bg-gradient" src="@slide.Picture">
+						</div>
+						idx++;
+					}
 				}
-			}
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#@Id" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#@Id" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
 		</div>
-		<button class="carousel-control-prev" type="button" data-bs-target="#@Id" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#@Id" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</button>
 	</div>
 </div>
 

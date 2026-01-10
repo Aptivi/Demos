@@ -3,27 +3,29 @@
 @if (Pictures is not null)
 {
 	int pictureNum = 0;
-	<div class="row g-4 row-cols-1 row-cols-lg-3">
-		@if (PreviewLinks is not null)
-		{
-			@foreach (var picture in Pictures)
+	<div class="general-container">
+		<div class="row g-4 row-cols-1 row-cols-lg-3">
+			@if (PreviewLinks is not null)
 			{
-				EventCallback previewLink = PreviewLinks[pictureNum];
-				pictureNum++;
-				<div class="col d-flex align-items-start">
-					<img class="img-fluid bordered" src="@picture" @onclick="previewLink" />
-				</div>
+				@foreach (var picture in Pictures)
+				{
+					EventCallback previewLink = PreviewLinks[pictureNum];
+					pictureNum++;
+					<div class="col d-flex align-items-start">
+						<img class="img-fluid bordered bordered-radius" src="@picture" @onclick="previewLink" />
+					</div>
+				}
 			}
-		}
-		else
-		{
-			@foreach (var picture in Pictures)
+			else
 			{
-				<div class="col d-flex align-items-start">
-					<img class="img-fluid bordered" src="@picture" />
-				</div>
+				@foreach (var picture in Pictures)
+				{
+					<div class="col d-flex align-items-start">
+						<img class="img-fluid bordered bordered-radius" src="@picture" />
+					</div>
+				}
 			}
-		}
+		</div>
 	</div>
 }
 
