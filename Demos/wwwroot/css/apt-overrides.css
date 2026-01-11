@@ -143,8 +143,13 @@
     margin-bottom: 1rem;
     vertical-align: top;
     border-color: var(--apt-accent-1);
+    border-width: var(--apt-styling-border-width);
 }
 
 .fs-1 {
     font-size: 2.75rem !important;
+}
+
+.hljs {
+    color: var(--apt-accent-2);
 }
