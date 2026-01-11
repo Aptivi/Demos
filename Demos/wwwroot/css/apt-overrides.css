@@ -144,3 +144,7 @@
     vertical-align: top;
     border-color: var(--apt-accent-1);
 }
+
+.fs-1 {
+    font-size: 2.75rem !important;
+}

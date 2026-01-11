@@ -3,26 +3,28 @@
 @if (FeatureArray is not null)
 {
 	<div class="general-container">
-		<div class="row g-4 row-cols-1 row-cols-xl-2">
-			@foreach (var feature in FeatureArray)
-			{
-				<div class="col text-center">
-					<div class="icon-square bg-body-secondary d-inline-flex align-items-center justify-content-center flex-shrink-0 my-5">
-						<span class="@feature.IconClass" aria-hidden="true" />
-					</div>
-					<h3 class="fs-2">@feature.Title</h3>
-					<p>@feature.Description</p>
-					<div class="d-grid gap-2 d-sm-flex justify-content-center">
-						@if (@feature.Buttons is not null)
-						{
-							@foreach (var button in @feature.Buttons)
+		<div class="container-fluid px-3 px-md-4">
+			<div class="row g-3 g-md-4 row-cols-1 row-cols-xl-2">
+				@foreach (var feature in FeatureArray)
+				{
+					<div class="col text-center px-2 px-md-3">
+						<div class="icon-square d-inline-flex align-items-center justify-content-center flex-shrink-0 my-3 my-md-5">
+							<span class="@feature.IconClass" aria-hidden="true" />
+						</div>
+						<h3 class="fs-1">@feature.Title</h3>
+						<p class="py-2 px-2 px-md-0">@feature.Description</p>
+						<div class="d-grid gap-2 d-sm-flex justify-content-center flex-wrap px-2">
+							@if (@feature.Buttons is not null)
 							{
-								<button class="btn btn-primary" type="button" @onclick="@button.Item1">@button.Item2</button>
+								@foreach (var button in @feature.Buttons)
+								{
+									<button class="btn btn-primary" type="button" @onclick="@button.Item1">@button.Item2</button>
+								}
 							}
-						}
+						</div>
 					</div>
-				</div>
-			}
+				}
+			</div>
 		</div>
 	</div>
 }

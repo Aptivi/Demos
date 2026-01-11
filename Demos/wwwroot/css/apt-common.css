@@ -58,8 +58,9 @@
 }
 
 .icon-square {
-    width: 15rem;
-    height: 15rem;
+    width: 100%;
+    max-width: min(15rem, 80vw);
+    height: auto;
     font-size: 8rem;
     border-radius: var(--apt-styling-border-radius);
     background-color: var(--apt-accent-back) !important;
@@ -69,4 +70,14 @@
 .general-container {
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+
+.col {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.btn {
+    max-width: 100%;
 }

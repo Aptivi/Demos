@@ -12,22 +12,38 @@ main {
     flex-direction: row;
 }
 
+@media (min-width: 992px) {
+    .content {
+        padding-right: 8rem !important;
+        padding-left: 8rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    .container-fluid {
+        padding-right: 8rem !important;
+        padding-left: 7rem !important;
+    }
+
+    .sidebar {
+        padding-right: 7rem !important;
+        padding-left: 7rem !important;
+    }
+}
+
+.content {
+    padding-bottom: 4rem !important;
+}
+
+.container-fluid {
+    padding-right: 2rem;
+    padding-left: 1rem;
+}
+
 .sidebar {
     position: sticky;
     top: 0;
     text-align: center;
     z-index: 1;
-    padding-right: 7rem;
-    padding-left: 7rem;
-}
-
-.content {
-    padding-right: 8rem !important;
-    padding-left: 8rem !important;
-    padding-bottom: 4rem !important;
-}
-
-.container-fluid {
-    padding-right: 8rem;
-    padding-left: 7rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }

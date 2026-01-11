@@ -1,9 +1,9 @@
 ﻿@using Demos.Data
 
-<div class="general-container">
+<div class="general-container px-2 px-md-3">
 	<div class="carousel-container">
 		<div id="@Id" class="carousel slide mb-6" data-bs-ride="carousel" data-carousel-id="@Id" style="padding: 0 0 2em">
-			<div class="carousel-inner jumbotron" style="border-radius: 12px">
+			<div class="carousel-inner jumbotron" style="border-radius: 12px; overflow: hidden;">
 				@if (Slides is not null)
 				{
 					int idx = 0;
@@ -11,7 +11,7 @@
 					{
 						string current = idx == 0 ? "active" : "";
 						<div class="carousel-item @current" data-caption-index="@idx">
-							<img class="d-block w-100 bg-gradient" src="@slide.Picture" alt="Slide @(idx + 1)">
+							<img class="d-block w-100 bg-gradient" src="@slide.Picture" alt="Slide @(idx + 1)" style="max-width: 100%; height: auto;">
 						</div>
 						idx++;
 					}
@@ -19,12 +19,8 @@
 			</div>
 		</div>
 		<BrandedBorder>
-			<div class="d-flex w-100">
-				<button class="btn btn-primary px-4 gap-3" type="button" data-bs-target="#@Id" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<div class="carousel-captions-container mx-5 w-100">
+			<div class="d-flex flex-column flex-md-row w-100 gap-2 gap-md-3 align-items-center">
+				<div class="carousel-captions-container flex-grow-1 px-2 px-md-3 w-100 order-1">
 					@if (Slides is not null)
 					{
 						int idx = 0;
@@ -32,14 +28,29 @@
 						{
 							string current = idx == 0 ? "active" : "";
 							<div class="caption-content text-center @current" data-caption-index="@idx">
-								<h1>@slide.Title</h1>
-								<p>@slide.Description</p>
+								<h1 class="fs-3 fs-md-1">@slide.Title</h1>
+								<p class="mb-0">@slide.Description</p>
 							</div>
 							idx++;
 						}
 					}
 				</div>
-				<button class="btn btn-primary px-4 gap-3" type="button" data-bs-target="#@Id" data-bs-slide="next">
+				<div class="d-flex d-md-none flex-row justify-content-between w-100 gap-2 order-2 px-2">
+					<button class="btn btn-primary px-3 flex-grow-1" type="button" data-bs-target="#@Id" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+
+					<button class="btn btn-primary px-3 flex-grow-1" type="button" data-bs-target="#@Id" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+				<button class="btn btn-primary px-4 flex-shrink-0 order-md-0 d-none d-md-block" type="button" data-bs-target="#@Id" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="btn btn-primary px-4 flex-shrink-0 order-md-2 d-none d-md-block" type="button" data-bs-target="#@Id" data-bs-slide="next">
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Next</span>
 				</button>
