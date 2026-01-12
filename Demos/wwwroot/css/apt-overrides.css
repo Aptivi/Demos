@@ -154,6 +154,14 @@
     color: var(--apt-accent-2);
 }
 
+@media (max-width: 770px) {
+    .container {
+        width: unset;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
 .container {
     width: unset;
     padding-left: 16rem;
