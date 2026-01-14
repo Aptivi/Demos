@@ -1,6 +1,6 @@
 ﻿@using Demos.Data
 
-<div class="general-container p-5">
+<div class="general-container">
 	<div class="carousel-container">
 		<div id="@Id" class="carousel slide mb-6" data-bs-ride="carousel" data-carousel-id="@Id" style="padding: 0 0 2em">
 			<div class="carousel-inner jumbotron" style="border-radius: 12px; overflow: hidden;">
@@ -20,7 +20,7 @@
 		</div>
 		<BrandedBorder>
 			<div class="d-flex flex-column flex-md-row w-100 gap-2 gap-md-3 align-items-center">
-				<div class="carousel-captions-container flex-grow-1 p-5 w-100 order-1">
+				<div class="carousel-captions-container flex-grow-1 p-2 p-md-5 w-100 order-1">
 					@if (Slides is not null)
 					{
 						int idx = 0;
