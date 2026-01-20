@@ -1,4 +1,5 @@
-﻿<BrandedBorder ExtraStyles="@ExtraStyles">
+﻿@using Demos.Data
+<BrandedBorder ExtraStyles="@ExtraStyles" BackgroundType="@BackgroundType">
 	<div class="d-flex flex-column flex-lg-row justify-content-between">
 		<div class="container-fluid order-2 order-lg-1">
 			<h1 class="fs-1">@Title</h1>
@@ -35,6 +36,8 @@
 	public (EventCallback, string)[] Buttons { get; set; }
 	[Parameter]
 	public string ExtraStyles { get; set; }
+	[Parameter]
+	public BackgroundType BackgroundType { get; set; } = BackgroundType.Gradient;
 	[Parameter]
 	public string Title { get; set; }
 	[Parameter]
