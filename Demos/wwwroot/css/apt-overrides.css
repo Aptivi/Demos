@@ -156,6 +156,23 @@
     color: var(--apt-accent-2);
 }
 
+.form-check-input {
+    background-color: var(--apt-accent-shade-4);
+    border-color: var(--apt-accent-1);
+    border-width: var(--apt-styling-border-width);
+}
+
+    .form-check-input:focus {
+        background-color: var(--apt-accent-shade-3);
+        border-color: var(--apt-accent-1);
+        box-shadow: none;
+    }
+
+    .form-check-input:checked {
+        background-color: var(--apt-accent-shade-3);
+        border-color: var(--apt-accent-1);
+    }
+
 .container {
     width: unset;
     padding-left: 16rem;

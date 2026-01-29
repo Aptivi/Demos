@@ -28,7 +28,7 @@
 		<label class="form-label">Indentation length: <InputNumber class="form-control" @bind-Value="IndentLength"></InputNumber></label>
 	</div>
 	<p>Indentation length: <InputNumber @bind-Value="IndentLength"></InputNumber></p>
-	<label><InputCheckbox @bind-Value="ByWords"></InputCheckbox> Split by words</label>
+	<label><InputCheckbox class="form-check-input" @bind-Value="ByWords"></InputCheckbox> Split by words</label>
 	<p>Results from <code>GetWrappedSentences()</code> or <code>GetWrappedSentencesByWords()</code></p>
 	@if (Results is not null)
 	{

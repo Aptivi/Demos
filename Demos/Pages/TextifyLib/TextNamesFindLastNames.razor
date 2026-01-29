@@ -22,7 +22,7 @@
 		<label class="form-label">Enter a search term:</label>
 		<InputText class="form-control" @bind-Value="Input"></InputText>
 	</div>
-	<label><InputCheckbox @bind-Value="CheckPrefixesSuffixes"></InputCheckbox> Also check prefixes and suffixes</label>
+	<label><InputCheckbox class="form-check-input" @bind-Value="CheckPrefixesSuffixes"></InputCheckbox> Also check prefixes and suffixes</label>
 	<div class="mb-3">
 		<label class="form-label">Enter some prefix:</label>
 		<InputText class="form-control" @bind-Value="Prefix" hidden="@(!CheckPrefixesSuffixes)"></InputText>

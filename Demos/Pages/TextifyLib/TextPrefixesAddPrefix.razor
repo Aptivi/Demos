@@ -25,7 +25,7 @@
 		<label class="form-label">Enter some prefix:</label>
 		<InputText class="form-control" @bind-Value="Prefix"></InputText>
 	</div>
-	<label><InputCheckbox @bind-Value="Verify"></InputCheckbox> Verify the prefix</label>
+	<label><InputCheckbox class="form-check-input" @bind-Value="Verify"></InputCheckbox> Verify the prefix</label>
 	<p>Result from <code>AddPrefix()</code>: @Result</p>
     @if (Errored)
     {

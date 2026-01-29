@@ -9,7 +9,7 @@
 				int idx = 0;
 				@foreach (var button in Buttons)
 				{
-					string buttonClass = idx == 0 ? "btn btn-primary px-4 gap-3" : "btn btn-secondary px-4";
+					string buttonClass = idx == 0 && !ForceSecondaryButtons ? "btn btn-primary px-4 gap-3" : "btn btn-secondary px-4";
 					<button class="@buttonClass" type="button" @onclick="@button.Item1">@button.Item2</button>
 					idx++;
 				}
@@ -25,6 +25,8 @@
 	public string Title { get; set; }
 	[Parameter]
 	public string ImageSource { get; set; } = "assets/logos/aptivi-logo-transparent-ios.png";
+	[Parameter]
+	public bool ForceSecondaryButtons { get; set; } = false;
 	[Parameter]
 	public RenderFragment ChildContent { get; set; }
 }

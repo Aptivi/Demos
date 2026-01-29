@@ -25,7 +25,7 @@
 		<label class="form-label">Enter some suffix:</label>
 		<InputText class="form-control" @bind-Value="Suffix"></InputText>
 	</div>
-	<label><InputCheckbox @bind-Value="Verify"></InputCheckbox> Verify the suffix</label>
+	<label><InputCheckbox class="form-check-input" @bind-Value="Verify"></InputCheckbox> Verify the suffix</label>
     <p>Result from <code>AddSuffix()</code>: @Result</p>
     @if (Errored)
     {
