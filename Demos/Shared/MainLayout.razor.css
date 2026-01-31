@@ -8,10 +8,6 @@ main {
     flex: 1;
 }
 
-.page {
-    flex-direction: row;
-}
-
 @media (min-width: 992px) {
     .content {
         padding-right: 8rem !important;
