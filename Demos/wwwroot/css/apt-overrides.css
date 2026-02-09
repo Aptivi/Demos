@@ -2,7 +2,7 @@
     color: var(--apt-accent-1);
 }
 
-.btn-primary, .btn, .form-control, .form-text {
+.btn-primary, .btn:disabled, .btn, .form-control, .form-text {
     color: var(--apt-accent-2);
     background-color: var(--apt-accent-shade-3);
     border-color: var(--apt-accent-1);

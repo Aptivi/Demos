@@ -19,9 +19,9 @@
 
 @code
 {
-	(EventCallback, string)[] DiscoverCallbacks =>
+	(EventCallback, string, bool)[] DiscoverCallbacks =>
 	[
-		(EventCallback.Factory.Create(this, new Action(async () => await Back())), "Go back")
+		(EventCallback.Factory.Create(this, new Action(async () => await Back())), "Go back", false)
 	];
 
 	private async Task Back()
