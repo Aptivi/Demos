@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Aptivi Project Demos</title>
+    <base href="/Demos/" />
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="Demos.styles.css" rel="stylesheet" />
+    <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <!-- Left-to-Right language based fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+
+    <!-- Right-to-Left language based fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+
+    <!-- More Metadata -->
+    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
+    <meta name="description" content="Aptivi Project Demos is a demonstration website where you can showcase some of our projects' functions, such as text manipulation, name generation, and more.">
+    <meta name="apple-mobile-web-app-title" content="Aptivi" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="px-4 py-5 text-center w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center">
+            <img class="d-block mx-auto mb-4 loading-progress" src="assets/logos/aptivi-logo-transparent-ios.png" alt="" width="256" height="256">
+            <h1 class="loading-progress-text"></h1>
+            <p style="text-align: center;">Aptivi... where tech changes.</p>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        <div class="modal fade show" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-modal="true" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content jumbotron">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Fatal Error!</h5>
+                    </div>
+                    <div class="modal-body">
+                        While processing your request, we've encountered an error. You'll need to reload the official Aptivi site to work properly. We are sorry for your inconvenience.
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/" class="btn btn-primary" role="button" onclick="location.reload()">Reload</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>
