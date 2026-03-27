@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
 <PageTitle>Aptivi</PageTitle>
 
@@ -24,13 +24,14 @@
 			<span class="mb-md-0">&copy; 2014-2026 Aptivi</span>
 		</div>
 
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://github.com/Aptivi"))"><span class="fa-brands fa-github" aria-hidden="true" /></a></li>
-			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://gitlab.com/Aptivi"))"><span class="fa-brands fa-gitlab" aria-hidden="true" /></a></li>
-			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://aptivi.gitbook.io/"))"><span class="fa-solid fa-book" aria-hidden="true" /></a></li>
-			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://mastodon.social/@official_aptivi"))"><span class="fa-brands fa-mastodon" aria-hidden="true" /></a></li>
-			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://x.com/OfficialAptivi"))"><span class="fa-brands fa-x-twitter" aria-hidden="true" /></a></li>
-			<li class="ms-3"><a @onclick="@(e => NavManager.NavigateTo("https://bsky.app/profile/aptivi.bsky.social"))"><span class="fa-brands fa-bluesky" aria-hidden="true" /></a></li>
+		<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+			<li class="ms-3"><a @onclick="@(async () => await JSRuntime.InvokeVoidAsync("open", "https://github.com/Aptivi", "_blank"))"><span class="fa-brands fa-github" aria-hidden="true" /></a></li>
+			<li class="ms-3"><a @onclick="@(async () => await JSRuntime.InvokeVoidAsync("open", "https://gitlab.com/Aptivi", "_blank"))"><span class="fa-brands fa-gitlab" aria-hidden="true" /></a></li>
+			<li class="ms-3"><a @onclick="@(async () => await JSRuntime.InvokeVoidAsync("open", "https://aptivi.gitbook.io/", "_blank"))"><span class="fa-solid fa-book" aria-hidden="true" /></a></li>
+			<li class="ms-3"><a @onclick="@(async () => await JSRuntime.InvokeVoidAsync("open", "https://mastodon.social/@official_aptivi", "_blank"))"><span class="fa-brands fa-mastodon" aria-hidden="true" /></a></li>
+			<li class="ms-3"><a @onclick="@(async () => await JSRuntime.InvokeVoidAsync("open", "https://x.com/OfficialAptivi", "_blank"))"><span class="fa-brands fa-x-twitter" aria-hidden="true" /></a></li>
+			<li class="ms-3"><a @onclick="@(async () => await JSRuntime.InvokeVoidAsync("open", "https://bsky.app/profile/aptivi.bsky.social", "_blank"))"><span class="fa-brands fa-bluesky" aria-hidden="true" /></a></li>
+			<li class="ms-3"><a @onclick="@(async () => await JSRuntime.InvokeVoidAsync("open", "https://tumblr.com/aptivi", "_blank"))"><span class="fa-brands fa-tumblr" aria-hidden="true" /></a></li>
 		</ul>
 	</footer>
 </div>
