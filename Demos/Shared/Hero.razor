@@ -1,4 +1,6 @@
-﻿<div class="px-4 py-5 text-center w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center">
+﻿@using Demos.Data
+
+<div class="px-4 py-5 text-center w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center">
 	<img class="d-block mx-auto mb-4 img-fluid" src="@ImageSource" alt="" style="max-width: 256px; height: auto;">
 	<h1 class="fs-1">@Title</h1>
 	<div class="col-lg-6 mx-auto">
@@ -10,7 +12,14 @@
 				@foreach (var button in Buttons)
 				{
 					string buttonClass = idx == 0 && !ForceSecondaryButtons ? "btn btn-primary px-4 gap-3" : "btn btn-secondary px-4";
-					<button class="@buttonClass" type="button" @onclick="@button.Item1">@button.Item2</button>
+					@if (button.Disabled)
+					{
+						<button class="@buttonClass" type="button" disabled>@button.Label</button>
+					}
+					else
+					{
+						<button class="@buttonClass" type="button" @onclick="@button.Callback">@button.Label</button>
+					}
 					idx++;
 				}
 			}
@@ -20,7 +29,7 @@
 
 @code {
 	[Parameter]
-	public (EventCallback, string, bool disabled)[] Buttons { get; set; }
+	public ButtonAction[] Buttons { get; set; }
 	[Parameter]
 	public string Title { get; set; }
 	[Parameter]

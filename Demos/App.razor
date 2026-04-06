@@ -1,4 +1,6 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using Demos.Data
+
+<Router AppAssembly="@typeof(App).Assembly">
 	<Found Context="routeData">
 		<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
 	</Found>
@@ -19,9 +21,9 @@
 
 @code
 {
-	(EventCallback, string, bool)[] DiscoverCallbacks =>
+	ButtonAction[] DiscoverCallbacks =>
 	[
-		(EventCallback.Factory.Create(this, new Action(async () => await Back())), "Go back", false)
+		new(this, async () => await Back(), "Go back")
 	];
 
 	private async Task Back()
