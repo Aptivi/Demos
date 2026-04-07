@@ -21,6 +21,9 @@
 		Select calendar type: <InputSelect @bind-Value="Type">
 			@foreach (var type in Types)
 			{
+				// We need to skip the Hijri calendar type, because the calendar type is not valid in this context.
+				if (type == CalendarTypes.Hijri)
+					continue;
 				<option value="@type">@type</option>
 			}
 		</InputSelect>
