@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Calendrier" Version="1.0.0.1" />
     <PackageReference Include="ChemiStar" Version="1.1.3" />
+    <PackageReference Include="Colorimetry" Version="1.0.0.1" />
     <PackageReference Include="Magico" Version="1.7.0.1" />
     <PackageReference Include="Metalinker" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.5" />

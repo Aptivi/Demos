@@ -176,6 +176,34 @@
 		<Features FeatureArray="@MetalinkerDemonstrations" />
 	</BrandedBorder>
 </BrandedBorder>
+<BrandedBorder BackgroundType="BackgroundType.Alternative">
+	<h1>Colorimetry</h1>
+	<p>
+		This section showcases the useful demonstrations for the Colorimetry library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
+	<BrandedBorder BackgroundType="BackgroundType.Primary">
+		<h1>Color tools</h1>
+		<p>
+			The color tools from the Colorimetry library can be found here.
+		</p>
+		<Features FeatureArray="@ColorimetryDemonstrations" />
+	</BrandedBorder>
+</BrandedBorder>
+<BrandedBorder BackgroundType="BackgroundType.Alternative">
+	<h1>Calendrier</h1>
+	<p>
+		This section showcases the useful demonstrations for the Calendrier library. Not all functions
+		are exposed here, but the most common and useful functions are found here.
+	</p>
+	<BrandedBorder BackgroundType="BackgroundType.Primary">
+		<h1>Calendar tools</h1>
+		<p>
+			The color tools from the Calendrier library can be found here.
+		</p>
+		<Features FeatureArray="@CalendrierDemonstrations" />
+	</BrandedBorder>
+</BrandedBorder>
 
 @code
 {
@@ -1070,6 +1098,46 @@
 			],
 			Description =
 				"Showcases how Metalinker can get information about the Metalink files."
+		},
+	];
+	#endregion
+	#region Colorimetry Demos
+	FeatureDescriptor[] ColorimetryDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-palette",
+			Title = "Colors - Color Info (manual)",
+			Buttons = [
+				new(this, () => NavManager.NavigateTo("colorimetry/colors/colorinfomanual"), "Showcase")
+			],
+			Description =
+				"Showcases how Colorimetry can get information about a color with manual writing."
+		},
+		new()
+		{
+			IconClass = "fa-solid fa-palette",
+			Title = "Colors - Color Info (select)",
+			Buttons = [
+				new(this, () => NavManager.NavigateTo("colorimetry/colors/colorinfoselect"), "Showcase")
+			],
+			Description =
+				"Showcases how Colorimetry can get information about a color with the color selector."
+		},
+	];
+	#endregion
+	#region Calendrier Demos
+	FeatureDescriptor[] CalendrierDemonstrations =>
+	[
+		new()
+		{
+			IconClass = "fa-solid fa-calendar",
+			Title = "Calendar - Calendar Info",
+			Buttons = [
+				new(this, () => NavManager.NavigateTo("calendrier/calendar/calendarinfo"), "Showcase")
+			],
+			Description =
+				"Showcases how Calendrier can get information about a calendar with current date and time."
 		},
 	];
 	#endregion
